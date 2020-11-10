@@ -1,31 +1,23 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
-  "engines": {
-    "node": "12.x"
-  },
-  "main": "index.js",
+  "name": "postal_rate_calculator",
+  "version": "1.0.0",
+  "description": "node assignment",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
-  },
-  "dependencies": {
-    "ejs": "^2.5.6",
-    "express": "^4.15.2"
-  },
-  "devDependencies": {
-    "got": "^11.3.0",
-    "tape": "^4.7.0"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "git+https://github.com/rogersh68/cse341-node.js.git"
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "MIT"
+  "author": "Hannah Rogers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rogersh68/cse341-node.js/issues"
+  },
+  "homepage": "https://github.com/rogersh68/cse341-node.js#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
 }
