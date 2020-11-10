@@ -1,0 +1,23 @@
+{
+  "name": "cse341-node",
+  "version": "1.0.0",
+  "description": "node projects",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogersh68/cse341-node.js.git"
+  },
+  "author": "Hannah Rogers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rogersh68/cse341-node.js/issues"
+  },
+  "homepage": "https://github.com/rogersh68/cse341-node.js#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
