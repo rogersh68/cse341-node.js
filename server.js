@@ -5,12 +5,27 @@ const url = require('url');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('pages/index'));
 app.get('/getRate', getRate);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+// setup error handler
+app.use(function (err, req, res, next) {
+  // log errors
+  console.error(err.stack);
+
+  // render error page
+  res.status(500).render('pages/error');
+});
+
+// handle 404 responses
+app.use(function (req, res, next) {
+  //render 404 page
+  res.status(404).render("pages/404", {url: req.originalUrl});
+});
 
 
 function getRate(req, res) {
