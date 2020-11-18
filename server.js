@@ -127,6 +127,10 @@ function loginUser(req, res) {
 	});
 }
 
+function createAccount(req, res) {
+	
+}
+
 
 /*** MODEL FUNCTIONS ***/
 
