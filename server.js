@@ -51,10 +51,39 @@ app.get('/', function(req, res) {
 });
 
 // send login page
-app.get('/login', (req, res) => res.render('pages/login', viewParams));
+app.get('/login', function(req, res) {
+	viewParams.title = "Login";
+	viewParams.message = "";
+	res.render('pages/login', viewParams)
+});
 
 // log user in
 app.post('/loginUser', loginUser);
+
+// send create account page
+app.get('/create', function(req, res) {
+	viewParams.title = "Create Account";
+	viewParams.message = "";
+	res.render('pages/create-account', viewParams);
+});
+
+// create new user account
+app.post('/createAccount', createAccount);
+
+// send error page
+app.use(function (err, req, res, next) {
+    // log errors
+    console.error(err.stack);
+
+    // render error page
+    res.status(500).render('pages/error', {title: "Error", dateString: currentDate});
+});
+
+// send 404 page
+app.use(function (req, res, next) {
+    //render 404 page
+    res.status(404).render("pages/404", {title: "404", dateString: currentDate, url: req.originalUrl});
+});
 
 /*** CONTROLLER FUNCTIONS ***/
 
