@@ -23,7 +23,12 @@ app.use(express.static('public'));
 app.set("view engine", "ejs");
 
 // set view parameters
-const viewParams = {title: "Title", dateString: "11/18/2020", message: "", userName: ""};
+const viewParams = {
+	title: "", 
+	dateString: getDate(), 
+	message: "", 
+	userName: ""
+};
 
 // set up server
 app.listen(PORT, function() {
@@ -43,24 +48,42 @@ app.post('/loginUser', loginUser);
 
 /*** FUNCTIONS ***/
 
+function getDate() {
+    /* Returns the current date as a string formatted MM/DD/YYYY */
+    let today = new Date();
+    let dateString = (today.getMonth()+1) + "/" + today.getDate() + "/" + today.getFullYear();
+    return dateString;
+}
+
 function loginUser(req, res) {
 	const userEmail = req.body.userEmail;
 	const userPassword = req.body.userPassword;
 
-	console.log(userEmail);
-	console.log(userPassword);
+	getUserByEmail(userEmail, function(err, result) {
+		if(err || result == null || result.length != 1) {
+			viewParams.message = "Login error. Please try again.";
+			res.render('pages/login', viewParams);
+			res.end();
+		}
+		else {
+			const userInfo = result[0];
+			viewParams.message = "Login Successful!";
+			viewParams.userName = userInfo.firstname;
+			res.render('pages/home', viewParams);
+			res.end();
+		}
+	});
+}
 
+function getUserByEmail(userEmail, callback) {
 	let sql = "SELECT * FROM public.user WHERE useremail = $1";
 	let params = [userEmail]
 	pool.query(sql, params, (err, result) => {
 		if (err) {
-			throw err;
+			console.log(err);
+			callback(err, null);
 		}
-
-		console.log('user: ', result.rows[0])
-	})
-	viewParams.message = "Login Successful!";
-	viewParams.userName = result.firstname;
-	res.render('pages/home', viewParams);
-	res.end();
+		console.log(result.rows[0])
+		callback(null, result.rows);
+	});
 }
