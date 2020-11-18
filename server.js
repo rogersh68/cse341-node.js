@@ -1,8 +1,9 @@
 /*** SETUP ***/
 
-var express = require('express');
+const express = require('express');
 const { Pool } = require('pg');
-var app = express();
+const app = express();
+const PORT = process.env.PORT || 5000;
 
 // enable post data parsing
 const bodyParser = require("body-parser");
@@ -25,7 +26,7 @@ app.set("view engine", "ejs");
 const viewParams = {title: "Title", dateString: "11/18/2020"};
 
 // set up server
-app.listen(process.env.PORT, function() {
+app.listen(PORT, function() {
     console.log("The server is listening");
 });
 
@@ -50,7 +51,8 @@ function loginUser(req, res) {
 	console.log(userPassword);
 
 	let sql = "SELECT * FROM public.user WHERE useremail = $1";
-	pool.query(sql, ['email@email.com'], (err, result) => {
+	let params = [userEmail]
+	pool.query(sql, params, (err, result) => {
 		if (err) {
 			throw err;
 		}
@@ -59,4 +61,5 @@ function loginUser(req, res) {
 	})
 
 	res.render('pages/login', viewParams);
+	res.end();
 }
