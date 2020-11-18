@@ -27,4 +27,4 @@ app.listen(process.env.PORT, function() {
 const viewParams = {title: "Title", dateString: "11/18/2020"};
 
 // send home page
-app.get('/', (req, res) => res.render('pages/home', {title: "Home", dateString: currentDate}));
+app.get('/', (req, res) => res.render('pages/home', viewParams));
