@@ -48,4 +48,15 @@ function loginUser(req, res) {
 
 	console.log(userEmail);
 	console.log(userPassword);
+
+	let sql = "SELECT * FROM public.user WHERE useremail = $1";
+	pool.query(sql, ['email@email.com'], (err, result) => {
+		if (err) {
+			throw err;
+		}
+
+		console.log('user: ', result.rows[0])
+	})
+
+	res.render('pages/login', viewParams);
 }
