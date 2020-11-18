@@ -43,5 +43,9 @@ app.post('/loginUser', loginUser);
 /*** FUNCTIONS ***/
 
 function loginUser(req, res) {
-	alert("Logged In");
+	const userEmail = req.body.userEmail;
+	const userPassword = req.body.userPassword;
+
+	console.log(userEmail);
+	console.log(userPassword);
 }
