@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.set("view engine", "ejs");
 
 // set view parameters
-const viewParams = {title: "Title", dateString: "11/18/2020"};
+const viewParams = {title: "Title", dateString: "11/18/2020", message: "", userName: ""};
 
 // set up server
 app.listen(PORT, function() {
@@ -59,7 +59,8 @@ function loginUser(req, res) {
 
 		console.log('user: ', result.rows[0])
 	})
-
-	res.render('pages/login', viewParams);
+	viewParams.message = "Login Successful!";
+	viewParams.userName = "Hannah";
+	res.render('pages/home', viewParams);
 	res.end();
 }
