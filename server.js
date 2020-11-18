@@ -60,7 +60,7 @@ function loginUser(req, res) {
 		console.log('user: ', result.rows[0])
 	})
 	viewParams.message = "Login Successful!";
-	viewParams.userName = "Hannah";
+	viewParams.userName = result.firstname;
 	res.render('pages/home', viewParams);
 	res.end();
 }
