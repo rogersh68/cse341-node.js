@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {title: title}); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <h1>Login</h1>
+        <div>
+            <form action="/loginUser" method="POST">
+                <label for="userEmail">Email</label>
+                <input type="text" name="userEmail">
+
+                <label for="userPassword">Password</label>
+                <input type="password" name="userPassword">
+
+                <input type="submit" value="Login">
+            </form>
+            
+            <form action="/create" method="POST">
+                <input type="submit" value="Create Account">
+            </form>
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer', {dateString: dateString}); %>
+    </footer>
+</body>
+</html>

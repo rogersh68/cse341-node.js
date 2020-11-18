@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {title: title}); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <!-- Display logged in message -->
+        <!-- Display logged in user's name -->
+        <% if (typeof(userName) == "undefined"){ %>
+            <h1>Welcome</h1>
+        <% } else{ %>
+            <h1>Welcome <%= userName %></h1>
+        <% } %>
+        <div>
+            <h2>Today's Outfit</h2>
+            
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer', {dateString: dateString}); %>
+    </footer>
+</body>
+</html>

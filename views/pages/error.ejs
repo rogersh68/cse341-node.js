@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
-    <link rel="stylsheet" href="styles/main.css">
+    <%- include('../partials/head', {title: title}); %>
 </head>
 <body>
-    <p>There was an error.</p>
-    
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <h1>Error</h1>
+        <p>Something broke! Please try again.</p>
+    </main>
+    <footer>
+        <%- include('../partials/footer', {dateString: dateString}); %>
+    </footer>
 </body>
 </html>

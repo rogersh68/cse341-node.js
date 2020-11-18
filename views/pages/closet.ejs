@@ -8,8 +8,14 @@
         <%- include('../partials/header'); %>
     </header>
     <main>
-        <h1>404</h1>
-        <p>Sorry, we couldn't find <%= url %>. Please try again.</p>
+        <h1>My Closet</h1>
+        <div>
+            <h2>Your Items:</h2>
+            
+        </div>
+        <form action="/add" method="GET">
+            <input type="submit" value="Add New Item">
+        </form>
     </main>
     <footer>
         <%- include('../partials/footer', {dateString: dateString}); %>
