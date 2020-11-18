@@ -19,7 +19,7 @@ app.use(express.static('public'));
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
-app.listen(8888, function() {
+app.listen(process.env.PORT, function() {
     console.log("The server is listening at port 8888");
 });
 
