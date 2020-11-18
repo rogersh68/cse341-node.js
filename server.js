@@ -39,7 +39,16 @@ app.listen(PORT, function() {
 /*** ROUTES ***/
 
 // send home page
-app.get('/', (req, res) => res.render('pages/home', viewParams));
+app.get('/', function(req, res) { 
+	if (viewParams.loggedIn == false) {
+		viewParams.title = "Login";
+		res.render('pages/login', viewParams);
+	}
+	else {
+		viewParams.title = "Home";
+		res.render('pages/home', viewParams);
+	}
+});
 
 // send login page
 app.get('/login', (req, res) => res.render('pages/login', viewParams));
