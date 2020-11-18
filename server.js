@@ -25,7 +25,8 @@ app.set("view engine", "ejs");
 // set view parameters
 const viewParams = {
 	title: "", 
-	dateString: getDate(), 
+	dateString: getDate(),
+	loggedIn: false, 
 	message: "", 
 	userName: ""
 };
@@ -46,7 +47,7 @@ app.get('/login', (req, res) => res.render('pages/login', viewParams));
 // log user in
 app.post('/loginUser', loginUser);
 
-/*** FUNCTIONS ***/
+/*** CONTROLLER FUNCTIONS ***/
 
 function getDate() {
     /* Returns the current date as a string formatted MM/DD/YYYY */
@@ -60,24 +61,45 @@ function loginUser(req, res) {
 	const userPassword = req.body.userPassword;
 
 	getUserByEmail(userEmail, function(err, result) {
+		// check for errors
 		if(err || result == null || result.length != 1) {
 			viewParams.message = "Login error. Please try again.";
 			res.render('pages/login', viewParams);
 			res.end();
 		}
+		// compare passwords and log user in if they match
 		else {
 			const userInfo = result[0];
-			viewParams.message = "Login Successful!";
-			viewParams.userName = userInfo.firstname;
-			res.render('pages/home', viewParams);
-			res.end();
+
+			// log user in
+			if (userInfo.userpassword == userPassword) {
+				viewParams.loggedIn = true;
+				viewParams.message = "Login Successful!";
+				viewParams.userName = userInfo.firstname;
+				res.render('pages/home', viewParams);
+				res.end();
+			}
+			// passwords don't match, redirect
+			else {
+				viewParams.message = "Incorrect password. Please try again.";
+				res.render('pages/login', viewParams);
+				res.end();
+			}
 		}
 	});
 }
 
+
+/*** MODEL FUNCTIONS ***/
+
 function getUserByEmail(userEmail, callback) {
+	// Set up SQL for query
 	let sql = "SELECT * FROM public.user WHERE useremail = $1";
+
+	// set up SQL parameters
 	let params = [userEmail]
+
+	// run query, send results to callback function
 	pool.query(sql, params, (err, result) => {
 		if (err) {
 			console.log(err);
