@@ -34,7 +34,7 @@ const viewParams = {
 };
 
 // import controllers
-const outfitController = require("/controllers/outfit-controller.js");
+const outfitController = require("/app/controllers/outfit-controller.js");
 
 // set up server
 app.listen(PORT, function() {
