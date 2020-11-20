@@ -6,9 +6,6 @@ const { Pool } = require('pg');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// import controllers
-const outfitController = require("./controllers/outfit-controller.js");
-
 // enable post data parsing
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,6 +32,10 @@ const viewParams = {
 	userId: 0,
 	userName: ""
 };
+
+
+// import controllers
+const outfitController = require("./controllers/outfit-controller.js");
 
 // set up server
 app.listen(PORT, function() {
