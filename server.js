@@ -50,11 +50,11 @@ app.listen(PORT, function() {
 
 // send home page
 app.get('/', function(req, res) { //TODO: reset if/else
-	//testing
-	viewParams.title = "Home";
-	res.render('pages/home', viewParams);
+	// //testing
+	// viewParams.title = "Home";
+	// res.render('pages/home', viewParams);
 
-	/*if (viewParams.loggedIn == false) {
+	if (viewParams.loggedIn == false) {
 		viewParams.title = "Login";
 		res.render('pages/login', viewParams);
 	}
@@ -62,7 +62,6 @@ app.get('/', function(req, res) { //TODO: reset if/else
 		viewParams.title = "Home";
 		res.render('pages/home', viewParams);
 	}
-	*/
 });
 
 // send login page
