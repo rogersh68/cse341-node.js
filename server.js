@@ -127,6 +127,9 @@ app.get('/delete', function(req, res) {
 // generate outfit
 app.post('/generate', generateOutfit);
 
+// get user's closet
+app.post('/user-clothes', getCloset);
+
 // send error page
 app.use(function (err, req, res, next) {
     // log errors
@@ -245,6 +248,14 @@ function generateOutfit(req, res) {
 	});
 }
 
+function getCloset(req, res) {
+	let userId = req.body.userId;
+
+	getClothesByUserId(userId, function(error, result) {
+		res.json(result);
+	});
+}
+
 function addClothingItem(req, res) {
 	let clothingType = req.body.clothingType;
 	let clothingColor = req.body.clothingColor;
@@ -286,6 +297,19 @@ function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 	};
 
 	callback(null, result);	
+}
+
+function getClothesByUserId(userId, callback) {
+	let sql = "SELECT * FROM clothing WHERE userid = $1";
+	
+	pool.query(sql, userId, (error, result) => {
+		if(error) {
+			console.log(error);
+			callback(error, null);
+		}
+		console.log(result);
+		callback(null, result);
+	});
 }
 
 function insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, callback) {

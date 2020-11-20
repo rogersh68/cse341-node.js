@@ -3,18 +3,19 @@
 <head>
     <%- include('../partials/head', {title: title}); %>
     <script>
-        function checkCloset() {
-            let closetDiv = document.getElementById('closet_output');
-            console.log(closetDiv.children.length);
-            if (closetDiv.children.length < 2) {
-                let notice = document.createElement('p');
-                notice.textContent = "Your closet is empty."
-                closetDiv.appendChild(notice);
-            }
+        function getCloset(userId) {
+            console.log("Getting user's clothes...");
+
+            $.post("/user-clothes", {userId:userId}, function(clothes) {
+                console.log("back from server with:");
+                console.log(clothes);
+                //append to output div
+                $("#closet_output").append("<p>" + clothes + "</p>");
+            })
         }
     </script>
 </head>
-<body onload="checkCloset()">
+<body onload="getCloset(1)">
     <header>
         <%- include('../partials/header'); %>
     </header>
