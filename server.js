@@ -1,4 +1,6 @@
-/*** SETUP ***/
+/*********************** 
+ * SETUP 
+ ***********************/
 
 const express = require('express');
 const path = require('path');
@@ -34,18 +36,25 @@ const viewParams = {
 };
 
 // import controllers
-const outfitController = require("/app/controllers/outfit-controller.js");
+const clothingController = require("./controllers/clothing-controller");
+const userController = require("./controllers/user-controller");
 
 // set up server
 app.listen(PORT, function() {
     console.log("The server is listening");
 });
 
-/*** ROUTES ***/
+/***********************
+ * ROUTES 
+ ***********************/
 
 // send home page
-app.get('/', function(req, res) { 
-	if (viewParams.loggedIn == false) {
+app.get('/', function(req, res) { //TODO: reset if/else
+	//testing
+	viewParams.title = "Home";
+	res.render('pages/home', viewParams);
+
+	/*if (viewParams.loggedIn == false) {
 		viewParams.title = "Login";
 		res.render('pages/login', viewParams);
 	}
@@ -53,6 +62,7 @@ app.get('/', function(req, res) {
 		viewParams.title = "Home";
 		res.render('pages/home', viewParams);
 	}
+	*/
 });
 
 // send login page
@@ -94,42 +104,50 @@ app.get('/closet', function(req, res) {
 });
 
 // send add item page
-app.get('/add-item', function(req, res) {
+app.get('/add', function(req, res) {
 	viewParams.title = "Add Item";
 	res.render('pages/add-item', viewParams);
 });
 
+// insert clothing item
+app.post('/add-item', addClothingItem);
+
 // send update item page
-app.get('/update-item', function(req, res) {
+app.get('/update', function(req, res) {
 	viewParams.title = "Update Item";
 	res.render('pages/update-item', viewParams);
 });
 
 // send delete item page
-app.get('/delete-item', function(req, res) {
+app.get('/delete', function(req, res) {
 	viewParams.title = "Delete Item";
 	res.render('pages/delete-item', viewParams);
 });
 
 // generate outfit
-app.post('/generate', outfitController.generateOutfit);
+app.post('/generate', generateOutfit);
 
 // send error page
 app.use(function (err, req, res, next) {
     // log errors
     console.error(err.stack);
 
-    // render error page
-    res.status(500).render('pages/error', {title: "Error", dateString: currentDate});
+	// render error page
+	viewParams.title = "Error";
+    res.status(500).render('pages/error', viewParams);
 });
 
 // send 404 page
 app.use(function (req, res, next) {
-    //render 404 page
-    res.status(404).render("pages/404", {title: "404", dateString: currentDate, url: req.originalUrl});
+	//render 404 page
+	viewParams.title = "404"
+	viewParams.url = req.originalUrl;
+    res.status(404).render("pages/404", viewParams);
 });
 
-/*** CONTROLLER FUNCTIONS ***/
+/*********************** 
+ * FUNCTIONS 
+ ***********************/
 
 function getDate() {
     /* Returns the current date as a string formatted MM/DD/YYYY */
@@ -138,9 +156,13 @@ function getDate() {
     return dateString;
 }
 
+/*********************** 
+ * USER CONTROLLER
+ ***********************/
+
 function loginUser(req, res) {
-	const userEmail = req.body.userEmail;
-	const userPassword = req.body.userPassword;
+	let userEmail = req.body.userEmail;
+	let userPassword = req.body.userPassword;
 
 	getUserByEmail(userEmail, function(err, result) {
 		// check for errors
@@ -151,7 +173,7 @@ function loginUser(req, res) {
 		}
 		// compare passwords and log user in if they match
 		else {
-			const userInfo = result[0];
+			let userInfo = result[0];
 
 			// log user in
 			if (userInfo.userpassword == userPassword) {
@@ -176,9 +198,13 @@ function createAccount(req, res) {
 	
 }
 
+function updateAccount(req, res) {
 
+}
 
-/*** MODEL FUNCTIONS ***/
+/*********************** 
+ * USER MODEL
+ ***********************/
 
 function getUserByEmail(userEmail, callback) {
 	// Set up SQL for query
@@ -197,6 +223,89 @@ function getUserByEmail(userEmail, callback) {
 		callback(null, result.rows);
 	});
 }
+
+function insertUser(firstName, lastName, userEmail, userPassword, callback) {
+
+}
+
+function updateUser(userId, firstName, lastName, userEmail, userPassword, callback) {
+	
+}
+
+/*********************** 
+ * CLOTHING CONTROLLER
+ ***********************/
+
+function generateOutfit(req, res) {
+	let userId = req.body.userId;
+	let warmRating = req.body.warmRating;
+
+	getClothesByUserIdAndWarmRating(userId, warmRating, function(error, result) {
+		res.json(result);
+	});
+}
+
+function addClothingItem(req, res) {
+	let clothingType = req.body.clothingType;
+	let clothingColor = req.body.clothingColor;
+	let warmRating = req.body.warmRating;
+	let casualRating = req.body.casualRating;
+	let clothingImage = req.body.clothingImage;
+	let userId = req.body.userId;
+
+	insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
+		if(result.success) {
+			res.render('pages/closet', viewParams);
+		}
+		else {
+			res.json(result);
+		}
+	});
+
+}
+
+function updateClothingItem(req, res) {
+
+}
+
+function deleteClothingItem(req, res) {
+
+}
+
+/*********************** 
+ * CLOTHING MODEL
+ ***********************/
+
+function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
+	//test values
+	var result = {
+		clothes: [
+			{clothingid:1, clothingtype:"Top", clothingcolor:"Blue", warmrating:5, casualrating:5, clothingimage:"path", userid:1},
+			{clothingid:2, clothingtype:"Bottom", clothingcolor:"Black", warmrating:5, casualrating:5, clothingimage:"path", userid:1}
+		]
+	};
+
+	callback(null, result);	
+}
+
+function insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, callback) {
+	let sql = "INSERT INTO clothing (clothingtype, clothingcolor, warmrating, casualrating, clothingimage, userid) VALUES ($1, $2, $3, $4, $5, $6)"
+	let params = [clothingType, clothingColor, warmRating, casualRating, clothingImage, userId];
+
+	pool.query(sql, params, (error, result) => {
+		if (error) {
+			console.log(error);
+			callback(error, null);
+		}
+		db_result = {
+			success:true,
+			list: result.rows
+		}
+		console.log(db_result)
+		callback(null, db_result)
+	})
+}
+
 
 
 

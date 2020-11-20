@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
     <%- include('../partials/head', {title: title}); %>
+    <script>
+        function checkCloset() {
+            let closetDiv = document.getElementById('closet_output');
+            console.log(closetDiv.children.length);
+            if (closetDiv.children.length < 2) {
+                let notice = document.createElement('p');
+                notice.textContent = "Your closet is empty."
+                closetDiv.appendChild(notice);
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="checkCloset()">
     <header>
         <%- include('../partials/header'); %>
     </header>
     <main>
         <h1>My Closet</h1>
-        <div>
+        <div id="closet_output">
             <h2>Your Items:</h2>
             
         </div>
