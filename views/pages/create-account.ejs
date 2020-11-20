@@ -8,7 +8,10 @@
         <%- include('../partials/header'); %>
     </header>
     <main>
-        <h1><%= title %></h1>
+        <!-- Display message -->
+        <div id="message_sticky"><%= message %></div>
+
+        <h1>Create Account</h1>
         <div>
             <form action="/createAccount" method="POST">
                 <label for="firstName">First Name</label>

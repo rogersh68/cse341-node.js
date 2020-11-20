@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <%- include('../partials/head', {title: title}); %>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="outfit.js"></script>
 </head>
 <body>
     <header>
@@ -9,13 +12,26 @@
     </header>
     <main>
         <!-- Display message -->
-        <div id="message"><%= message %></div>
+        <div id="message_fade"><%= message %></div>
 
         <!-- Display logged in user's name -->
         <h1>Welcome <%= userName %></h1>
         <div>
+            <div id="weather_output">
+
+            </div>
+
             <h2>Today's Outfit</h2>
             
+            <div id="outfit_output">
+                
+            </div>
+            <!--form action="/generate" method="POST">
+                <input type="hidden" name="userId" value="<%= userId %>">
+                <input type="hidden" name="weatherRating" value="5">
+                <input type="submit" value="Next Option">
+            </form-->
+            <button type="button" onclick="generateOutfit(1, 5)">Next Option</button>
         </div>
     </main>
     <footer>

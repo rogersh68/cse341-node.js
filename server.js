@@ -1,9 +1,13 @@
 /*** SETUP ***/
 
 const express = require('express');
+const path = require('path');
 const { Pool } = require('pg');
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// import controllers
+const outfitController = require("./controllers/outfit-controller.js");
 
 // enable post data parsing
 const bodyParser = require("body-parser");
@@ -17,7 +21,7 @@ const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
 // set static directory
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -28,6 +32,7 @@ const viewParams = {
 	dateString: getDate(),
 	loggedIn: false, 
 	message: "", 
+	userId: 0,
 	userName: ""
 };
 
@@ -69,6 +74,45 @@ app.get('/create', function(req, res) {
 
 // create new user account
 app.post('/createAccount', createAccount);
+
+// send account page
+app.get('/account', function(req, res) {
+	if (viewParams.loggedIn == false) {
+		viewParams.title = "Login";
+		res.render('pages/login', viewParams);
+	}
+	else {
+		viewParams.title = "My Account";
+		res.render('pages/account', viewParams);
+	}
+});
+
+// send closet page
+app.get('/closet', function(req, res) {
+	viewParams.title = "My Closet";
+	res.render('pages/closet', viewParams);
+});
+
+// send add item page
+app.get('/add-item', function(req, res) {
+	viewParams.title = "Add Item";
+	res.render('pages/add-item', viewParams);
+});
+
+// send update item page
+app.get('/update-item', function(req, res) {
+	viewParams.title = "Update Item";
+	res.render('pages/update-item', viewParams);
+});
+
+// send delete item page
+app.get('/delete-item', function(req, res) {
+	viewParams.title = "Delete Item";
+	res.render('pages/delete-item', viewParams);
+});
+
+// generate outfit
+app.post('/generate', outfitController.generateOutfit);
 
 // send error page
 app.use(function (err, req, res, next) {
@@ -113,6 +157,7 @@ function loginUser(req, res) {
 			if (userInfo.userpassword == userPassword) {
 				viewParams.loggedIn = true;
 				viewParams.message = "Login Successful!";
+				viewParams.userId = userInfo.userid;
 				viewParams.userName = userInfo.firstname;
 				res.render('pages/home', viewParams);
 				res.end();
@@ -130,6 +175,7 @@ function loginUser(req, res) {
 function createAccount(req, res) {
 	
 }
+
 
 
 /*** MODEL FUNCTIONS ***/
@@ -151,3 +197,6 @@ function getUserByEmail(userEmail, callback) {
 		callback(null, result.rows);
 	});
 }
+
+
+
