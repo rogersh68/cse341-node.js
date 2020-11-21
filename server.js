@@ -74,6 +74,9 @@ app.get('/login', function(req, res) {
 // log user in
 app.post('/loginUser', loginUser);
 
+// log user out
+app.get('/logout', logoutUser);
+
 // send create account page
 app.get('/create', function(req, res) {
 	viewParams.title = "Create Account";
@@ -194,6 +197,15 @@ function loginUser(req, res) {
 			}
 		}
 	});
+}
+
+function logoutUser(req, res) {
+	viewParams.loggedIn = false;
+	viewParams.message = "You have been logged out.";
+	viewParams.userId = 0;
+	viewParams.userName = "";
+	res.render('pages/login', viewParams);
+	res.end();
 }
 
 function createAccount(req, res) {
