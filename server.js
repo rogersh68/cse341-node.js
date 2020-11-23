@@ -331,8 +331,8 @@ function getClothesByUserId(userId, callback) {
 			console.log(error);
 			callback(error, null);
 		}
-		console.log(result);
-		callback(null, result);
+		console.log(result.rows);
+		callback(null, result.rows);
 	});
 }
 

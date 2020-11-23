@@ -4,15 +4,15 @@
     <%- include('../partials/head', {title: title}); %>
     <script>
         function getCloset(userId) {
-            console.log("Getting user's clothes...");
+        console.log("Getting user's clothes...");
 
-            $.post("/user-clothes", {userId:userId}, function(clothes) {
-                console.log("back from server with:");
-                console.log(clothes);
-                //append to output div
-                $("#closet_output").append("<p>" + clothes + "</p>");
-            })
-        }
+        $.post("/user-clothes", {userId:userId}, function(clothes) {
+            console.log("back from server with:");
+            console.log(clothes);
+            //append to output div
+            $("#closet_output").append("<p>" + clothes.clothingtype + "</p>");
+        })
+    }
     </script>
 </head>
 <body onload="getCloset(1)">
