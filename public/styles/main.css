@@ -1,3 +1,24 @@
 body {
     background-color: red;
 }
+header h1 {
+    text-align: center;
+}
+
+#nav_div {
+    display: flex;
+}
+nav ul {
+    margin: 0;
+}
+nav li{
+    list-style-type: none;
+    margin: 5px;
+}
+a {
+    text-decoration: none;
+    padding: 15px;
+}
+main {
+    text-align: center;
+}

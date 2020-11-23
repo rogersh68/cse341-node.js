@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "pg": "^6.1.3",
     "dotenv": "^8.2.0",
-    "express-session": "^1.17.1"
+    "express-session": "^1.17.1",
+    "path": "^15.2.1"
   }
 }
