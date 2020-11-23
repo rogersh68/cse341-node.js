@@ -311,21 +311,20 @@ function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 }
 
 function getClothesByUserId(userId, callback) {
-	//test values
-	var result = {
-		clothes: [
-			{clothingid:1, clothingtype:"Top", clothingcolor:"Blue", warmrating:5, casualrating:5, clothingimage:"path", userid:1},
-			{clothingid:2, clothingtype:"Bottom", clothingcolor:"Black", warmrating:5, casualrating:5, clothingimage:"path", userid:1}
-		]
-	};
+	// //test values
+	// var result = {
+	// 	clothes: [
+	// 		{clothingid:1, clothingtype:"Top", clothingcolor:"Blue", warmrating:5, casualrating:5, clothingimage:"path", userid:1},
+	// 		{clothingid:2, clothingtype:"Bottom", clothingcolor:"Black", warmrating:5, casualrating:5, clothingimage:"path", userid:1}
+	// 	]
+	// };
 
-	callback(null, result);	
+	// callback(null, result);	
 
-
-	/*
 	let sql = "SELECT * FROM clothing WHERE userid = $1";
+	let params = [userid];
 	
-	pool.query(sql, userId, (error, result) => {
+	pool.query(sql, params, (error, result) => {
 		if(error) {
 			console.log(error);
 			callback(error, null);
@@ -333,7 +332,6 @@ function getClothesByUserId(userId, callback) {
 		console.log(result);
 		callback(null, result);
 	});
-	*/
 }
 
 function insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, callback) {
