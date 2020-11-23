@@ -321,8 +321,10 @@ function getClothesByUserId(userId, callback) {
 
 	// callback(null, result);	
 
+	console.log("Accessing the database...");
+
 	let sql = "SELECT * FROM clothing WHERE userid = $1";
-	let params = [userid];
+	let params = [userId];
 	
 	pool.query(sql, params, (error, result) => {
 		if(error) {
