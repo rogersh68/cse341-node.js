@@ -31,7 +31,7 @@ const viewParams = {
 	dateString: getDate(),
 	loggedIn: false, 
 	message: "", 
-	userId: 0,
+	userId: 1,
 	userName: ""
 };
 

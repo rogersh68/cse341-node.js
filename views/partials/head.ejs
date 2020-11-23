@@ -17,7 +17,7 @@
     }
     header h1 {
         text-align: center;
-        font-size: 5em;
+        font-size: 4em;
     }
     #nav_div {
         display: grid;
@@ -58,8 +58,9 @@
             console.log(outfit);
             // append to output div
             $("#outfit_output").empty();
-            $("#outfit_output").append("<p>" + outfit.clothes[0].clothingtype + "</p>");
-            $("#outfit_output").append("<p>" + outfit.clothes[1].clothingtype + "</p>");
+            outfit.clothes.forEach(e => {
+                $("#outfit_output").append("<p>" + e.clothingtype + "</p>");
+            });
         })
     }
 
@@ -82,8 +83,10 @@
         $.post("/user-clothes", {userId:userId}, function(clothes) {
             console.log("back from server with:");
             console.log(clothes);
-            //append to output div
-            $("#closet_output").append("<p>" + clothes[0].clothingtype + "</p>");
+            //append each clothing item to output div
+            clothes.forEach(e => {
+                $("#closet_output").append("<p>" + e.clothingtype + "</p>");
+            });
         })
     }
 </script>

@@ -7,18 +7,7 @@
 
     <!--TODO: get app to connect to static files and use clothing.js-->
     <script>
-        function generateOutfit(userId, warmRating) {
-            console.log("Generating new outfit...");
-
-            $.post("/generate", {userId:userId, warmRating:warmRating}, function(outfit) {
-                console.log("back from server with:");
-                console.log(outfit);
-                // append to output div
-                $("#outfit_output").empty();
-                $("#outfit_output").append("<p>" + outfit.clothes[0].clothingtype + "</p>");
-                $("#outfit_output").append("<p>" + outfit.clothes[1].clothingtype + "</p>");
-            })
-        }
+        
 
         setTimeout(function() {
             $('#message_fade').fadeOut();
