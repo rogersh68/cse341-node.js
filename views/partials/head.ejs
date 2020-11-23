@@ -45,9 +45,17 @@
     main {
         text-align: center;
     }
+    .success {
+        background-color: #9AC482;
+    }
+    .warning {
+        background-color: #EDD16E;
+    }
 </style>
 
 <script>
+    /*** clothing.js ***/
+
     // AJAX function sends request to clothing controller to generate an outfit
     // then adds the outfit to HTML.
     function generateOutfit(userId, warmRating) {
@@ -88,5 +96,22 @@
                 $("#closet_output").append("<p>" + e.clothingtype + "</p>");
             });
         })
+    }
+</script>
+
+<script>
+    /*** message.js ***/
+
+    setTimeout(function() {
+        $('#message_fade').fadeOut();
+
+    }, 10000);
+
+    function messageFadeIn() {
+
+    }
+
+    function messageFadeOut() {
+    
     }
 </script>
