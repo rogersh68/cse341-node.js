@@ -3,8 +3,8 @@
 <head>
     <%- include('../partials/head', {title: title}); %>
 </head>
-<!--TODO: replace userId and warmRating hardcoded values-->
-<body onload="generateOutfit(1, 5)">
+<!--TODO: replace userId hardcoded value-->
+<body onload="generateOutfit(1)">
     <header>
         <%- include('../partials/header'); %>
     </header>
@@ -16,7 +16,7 @@
         <h1>Welcome <%= userName %></h1>
         <div>
             <div id="weather_output">
-
+                <p>Today will be a high of <%= temp %>&#8457;</p>
             </div>
 
             <h2>Today's Outfit</h2>
@@ -24,8 +24,8 @@
             <div id="outfit_output">
                 
             </div>
-            <!--TODO: repalce userId and warmRating hardcoded values-->
-            <button type="button" onclick="generateOutfit(1, 5)">Next Option</button>
+            <!--TODO: repalce userId hardcoded value-->
+            <button type="button" onclick="generateOutfit(1)">Next Option</button>
         </div>
     </main>
     <footer>

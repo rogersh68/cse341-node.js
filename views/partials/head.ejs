@@ -58,17 +58,25 @@
 
     // AJAX function sends request to clothing controller to generate an outfit
     // then adds the outfit to HTML.
-    function generateOutfit(userId, warmRating) {
+    function generateOutfit(userId) {
         console.log("Generating new outfit...");
 
-        $.post("/generate", {userId:userId, warmRating:warmRating}, function(outfit) {
+        $.post("/generate", {userId:userId}, function(outfit) {
             console.log("back from server with:");
             console.log(outfit);
             // append to output div
             $("#outfit_output").empty();
-            outfit.clothes.forEach(e => {
-                $("#outfit_output").append("<p>" + e.clothingtype + "</p>");
-            });
+            
+            // check if outfit is empty
+            if (outfit != undefined || outfit != null) {
+                outfit.clothes.forEach(e => {
+                    $("#outfit_output").append("<p>" + e.clothingtype + "</p>");
+                });
+            }
+            else {
+                $("#outfit_output").append("<p>Could not generate outfit. Add more items to your closet and try again.</p>");
+            }
+            
         })
     }
 
