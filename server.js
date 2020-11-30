@@ -270,7 +270,7 @@ function generateOutfit(req, res) {
 	// get warmRating based on temp
 	let warmRating = getWarmRating(temp);
 
-	const outfit;
+	const outfit = [];
 
 	getClothesByUserIdAndWarmRating(userId, warmRating, function(error, result) {
 		// check for errors
