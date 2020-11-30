@@ -416,6 +416,7 @@ function generateOutfit(req, res) {
 						break;
 				}
 			});
+			
 			// generate random number
 			let int = getRandomInt(2);
 
@@ -619,22 +620,12 @@ function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 			console.log(error);
 			callback(error, null);
 		}
-		console.log(result);
-		callback(null, result);
+		console.log(result.rows);
+		callback(null, result.rows);
 	})
 }
 
 function getClothesByUserId(userId, callback) {
-	// //test values
-	// var result = {
-	// 	clothes: [
-	// 		{clothingid:1, clothingtype:"Top", clothingcolor:"Blue", warmrating:5, casualrating:5, clothingimage:"path", userid:1},
-	// 		{clothingid:2, clothingtype:"Bottom", clothingcolor:"Black", warmrating:5, casualrating:5, clothingimage:"path", userid:1}
-	// 	]
-	// };
-
-	// callback(null, result);	
-
 	console.log("Accessing the database...");
 
 	let sql = "SELECT * FROM clothing WHERE userid = $1";
