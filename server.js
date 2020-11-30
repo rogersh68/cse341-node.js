@@ -290,7 +290,8 @@ function generateOutfit(req, res) {
 			let date = new Date();
 			let month = date.getMonth() + 1;
 			console.log(result);
-			/*result.forEach(e => {
+			/*
+			result.forEach(e => {
 				switch(e.clothingtype) {
 					case "Top":
 						//check if season is fall/winter
@@ -414,7 +415,6 @@ function generateOutfit(req, res) {
 						break;
 				}
 			});
-			*/
 			// generate random number
 			let int = getRandomInt(2);
 
@@ -518,6 +518,7 @@ function generateOutfit(req, res) {
 			
 			// send outfit
 			res.json(outfit);
+			*/
 		}
 	});
 }
@@ -606,15 +607,21 @@ function deleteClothingItem(req, res) {
  ***********************/
 
 function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
-	//test values
-	var result = {
-		clothes: [
-			{clothingid:1, clothingtype:"Top", clothingcolor:"Blue", warmrating:5, casualrating:5, clothingimage:"path", userid:1},
-			{clothingid:2, clothingtype:"Bottom", clothingcolor:"Black", warmrating:5, casualrating:5, clothingimage:"path", userid:1}
-		]
-	};
+	// Set up SQL for query
+	let sql = "SELECT * FROM clothes WHERE userid = $1 AND warmrating = $2";
 
-	callback(null, result);	
+	// set up SQL params
+	let params = [userId, warmRating];
+
+	// run query, send results to callback function
+	pool.query(sql, params, (error, result) => {
+		if (error) {
+			console.log(error);
+			callback(error, null);
+		}
+		console.log(result);
+		callback(null, result);
+	})
 }
 
 function getClothesByUserId(userId, callback) {
