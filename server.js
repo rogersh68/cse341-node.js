@@ -609,7 +609,7 @@ function deleteClothingItem(req, res) {
 
 function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 	// Set up SQL for query
-	let sql = "SELECT * FROM clothes WHERE userid = $1 AND warmrating = $2";
+	let sql = "SELECT * FROM clothing WHERE userid = $1 AND warmrating = $2";
 
 	// set up SQL params
 	let params = [userId, warmRating];
