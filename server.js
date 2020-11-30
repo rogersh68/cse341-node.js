@@ -289,7 +289,7 @@ function generateOutfit(req, res) {
 			// clothing types onto different arrays
 			let date = new Date();
 			let month = date.getMonth() + 1;
-
+			console.log(result);
 			result.forEach(e => {
 				switch(e.clothingtype) {
 					case "Top":
