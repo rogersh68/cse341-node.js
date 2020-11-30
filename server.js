@@ -272,7 +272,7 @@ function generateOutfit(req, res) {
 
 	getClothesByUserIdAndWarmRating(userId, warmRating, function(error, result) {
 		// check for errors
-		if(err || result == null) {
+		if(error || result == null) {
 			viewParams.message = "Error getting outfit. Please try again.";
 			res.render('pages/home', viewParams);
 			res.end();
