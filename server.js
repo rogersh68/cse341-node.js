@@ -270,6 +270,8 @@ function generateOutfit(req, res) {
 	// get warmRating based on temp
 	let warmRating = getWarmRating(temp);
 
+	const outfit;
+
 	getClothesByUserIdAndWarmRating(userId, warmRating, function(error, result) {
 		// check for errors
 		if(error || result == null) {
@@ -290,7 +292,6 @@ function generateOutfit(req, res) {
 			let date = new Date();
 			let month = date.getMonth() + 1;
 			console.log(result);
-			/*
 			result.forEach(e => {
 				switch(e.clothingtype) {
 					case "Top":
@@ -518,7 +519,6 @@ function generateOutfit(req, res) {
 			
 			// send outfit
 			res.json(outfit);
-			*/
 		}
 	});
 }
