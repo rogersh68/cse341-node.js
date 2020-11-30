@@ -290,7 +290,7 @@ function generateOutfit(req, res) {
 			let date = new Date();
 			let month = date.getMonth() + 1;
 			console.log(result);
-			result.forEach(e => {
+			/*result.forEach(e => {
 				switch(e.clothingtype) {
 					case "Top":
 						//check if season is fall/winter
@@ -414,7 +414,7 @@ function generateOutfit(req, res) {
 						break;
 				}
 			});
-			
+			*/
 			// generate random number
 			let int = getRandomInt(2);
 
