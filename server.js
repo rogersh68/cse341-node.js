@@ -613,6 +613,7 @@ function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 
 	// set up SQL params
 	let params = [userId, warmRating];
+	console.log(params);
 
 	// run query, send results to callback function
 	pool.query(sql, params, (error, result) => {
