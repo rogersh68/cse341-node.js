@@ -69,9 +69,10 @@
             
             // check if outfit is empty
             if (outfit != undefined || outfit != null) {
-                outfit.forEach(e => {
-                    $("#outfit_output").append("<p>" + e.clothingtype + "</p>");
-                });
+                console.log(outfit);
+                // outfit.forEach(e => {
+                //     $("#outfit_output").append("<p>" + e.clothingtype + "</p>");
+                // });
             }
             else {
                 $("#outfit_output").append("<p>Could not generate outfit. Add more items to your closet and try again.</p>");
