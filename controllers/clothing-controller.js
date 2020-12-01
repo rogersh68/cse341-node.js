@@ -1,38 +1,18 @@
 // get model
 const clothingModel = require("../models/clothing-model.js");
-
-// outfit array (check if empty then go into db - if db is empty send closet empty message)
-const outfit; // if undefined, not enough items in closet
+const library = require("../library/functions.js");
 
 function generateOutfit(req, res) {
-	//test values
 	let userId = req.body.userId;
-	let temp = getTemp();
-	let warmRating;
-	let date = new Date();
-	let month = date.getMonth() + 1;	
 
-	// get required warmRating
-	if (temp < 40) {
-		warmRating = 5
-	}
-	else if (temp < 50) {
-		warmRating = 4
-	}
-	else if (temp < 60) {
-		warmRating = 3
-	}
-	else if (temp < 70) {
-		warmRating = 2
-	}
-	else {
-		warmRating = 1
-	}
-	
+	// get warmRating based on temp
+	let warmRating = getWarmRating(temp);
 
-	clothingModel.getClothesByUserIdAndWarmRating(userId, warmRating, function(err, result) {
+	const outfit = [];
+
+	clothingModel.getClothesByUserIdAndWarmRating(userId, warmRating, function(error, result) {
 		// check for errors
-		if(err || result == null) {
+		if(error || result == null) {
 			viewParams.message = "Error getting outfit. Please try again.";
 			res.render('pages/home', viewParams);
 			res.end();
@@ -45,8 +25,11 @@ function generateOutfit(req, res) {
 			let onepieces = [];
 			let shoes = [];
 
-			// checks season colors for each item and separates
+			// check season colors for each item and separate
 			// clothing types onto different arrays
+			let date = new Date();
+			let month = date.getMonth() + 1;
+			console.log(result);
 			result.forEach(e => {
 				switch(e.clothingtype) {
 					case "Top":
@@ -173,10 +156,10 @@ function generateOutfit(req, res) {
 			});
 			
 			// generate random number
-			let int = getRandomInt(2);
+			let int = library.getRandomInt(2);
 
-			// compares casual ratings and
-			// adds pieces to outfit array
+			// compare casual ratings and
+			// add pieces to outfit array
 			switch (int) {
 				case 0:
 					if (tops.length != 0 && bottoms.length != 0) {
@@ -279,31 +262,32 @@ function generateOutfit(req, res) {
 	});
 }
 
-/* 
-*  Uses a weather API to get the high temp for the day 
-*  and returns the high temp as an int.
-*/
-function getTemp() {
-	return 60;
+function getWarmRating(temp) {
+	/* Returns the warm rating based on the temp */
+	if (temp < 40) {
+		return 5
+	}
+	else if (temp < 50) {
+		return 4
+	}
+	else if (temp < 60) {
+		return 3
+	}
+	else if (temp < 70) {
+		return 2
+	}
+	else {
+		return 1
+	}
 }
 
-/*
-*  Returns a random integer between 0 and the max argument.
-*/
-function getRandomInt(max) {
-	return Math.floor(Math.random() * Math.floor(max));
-}
-
-/*
-*  Goes through an array and compares ratings of items on 
-*  the array with the main rating. Returns the random item
-*  with a similar rating of the main rating.
-*/
 function compareRating(array, mainRating) {
+	/* Compares ratings of items on an array with the main rating.
+	*  Returns the random item with a similar rating of the main rating. */
 	let item;
 	let rating;
 	let tries = 0;
-	let i = getRandomInt(array.length);
+	let i = library.getRandomInt(array.length);
 	// if index is over the end of the array start at beginning
 	if (i > array.length - 1) {
 		i = 0;
@@ -322,6 +306,57 @@ function compareRating(array, mainRating) {
 	return item;
 }
 
+function getCloset(req, res) {
+	let userId = req.body.userId;
+
+	clothingModel.getClothesByUserId(userId, function(error, result) {
+		res.json(result);
+	});
+}
+
+function addClothingItem(req, res) {
+	let clothingType = req.body.clothingType;
+	let clothingColor = req.body.clothingColor;
+	let warmRating = req.body.warmRating;
+	let casualRating = req.body.casualRating;
+	let clothingImage = req.body.clothingImage;
+	let userId = req.body.userId;
+
+	clothingModel.insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
+		if(result.success) {
+			res.render('pages/closet', viewParams);
+		}
+		else {
+			res.json(result);
+		}
+	});
+
+}
+
+function prepareUpdate(req, res) {
+	let clothingId = req.body.clothingId;
+	
+	clothingModel.getClothingByClothingId(clothingId, function(error, result) {
+		viewParams.clothingItem = result;
+		
+		res.render("pages/update-item", viewParams);
+	});
+	
+}
+
+function updateClothingItem(req, res) {
+
+}
+
+function deleteClothingItem(req, res) {
+
+}
+
 module.exports = {
-    generateOutfit: generateOutfit
+	generateOutfit: generateOutfit,
+	getCloset: getCloset,
+	addClothingItem: addClothingItem,
+	prepareUpdate: prepareUpdate,
+	updateClothingItem: updateClothingItem,
+	deleteClothingItem: deleteClothingItem
 };

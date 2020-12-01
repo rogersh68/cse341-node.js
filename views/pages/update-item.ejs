@@ -7,12 +7,6 @@
     <header>
         <%- include('../partials/header'); %>
     </header>
-
-    <script>
-        console.log("ClothingItem:")
-        console.log("<%= clothingItem %>");
-    </script>
-
     <main>
         <h1>Update</h1>
         <form action="/update-item" method="POST">
@@ -25,7 +19,6 @@
                 <option>Outerwear</option>
                 <option>Shoes</option>
             </select>
-            <p><%= clothingItem.clothingtype %></p>
 
             <label for="clothingColor">Color</label>
             <select name="clothingColor">
