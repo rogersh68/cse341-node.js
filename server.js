@@ -119,10 +119,14 @@ app.get('/add', function(req, res) {
 app.post('/add-item', addClothingItem);
 
 // send update item page
-app.get('/update', function(req, res) {
-	viewParams.title = "Update Item";
-	res.render('/pages/update-item', viewParams);
-});
+app.post('/update', setUpUpdatePage);
+
+function setUpUpdatePage(req, res) {
+	let clothingId = req.body.clothingId;
+	console.log("CLOTHINGID:");
+	console.log(clothingId);
+	res.render("pages/update-item");
+}
 
 // send delete item page
 app.get('/delete', function(req, res) {
