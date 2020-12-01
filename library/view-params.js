@@ -1,3 +1,5 @@
+const library = require("./functions");
+
 const viewParams = {
 	title: "", 
 	dateString: library.getDate(),
@@ -5,7 +7,7 @@ const viewParams = {
 	message: "", 
 	userId: 1,
 	userName: "",
-	temp: temp
+	temp: library.getTemp()
 };
 
 module.exports = {
