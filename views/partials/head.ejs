@@ -64,6 +64,7 @@
         $.post("/generate", {userId:userId}, function(outfit) {
             console.log("back from server with:");
             console.log(outfit);
+            console.log(outfit.length);
             // append to output div
             $("#outfit_output").empty();
             
