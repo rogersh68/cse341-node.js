@@ -1,3 +1,5 @@
+const connection = require("../library/connection.js");
+
 function getUserByEmail(userEmail, callback) {
 	// Set up SQL for query
 	let sql = "SELECT * FROM public.user WHERE useremail = $1";
@@ -6,7 +8,7 @@ function getUserByEmail(userEmail, callback) {
 	let params = [userEmail]
 
 	// run query, send results to callback function
-	pool.query(sql, params, (err, result) => {
+	connection.pool.query(sql, params, (err, result) => {
 		if (err) {
 			console.log(err);
 			callback(err, null);

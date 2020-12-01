@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 const clothingController = require("./controllers/clothing-controller");
 const userController = require("./controllers/user-controller");
 const library = require("./library/functions");
+const viewParams = require("./library/view-params");
 
 // enable post data parsing
 const bodyParser = require("body-parser");
@@ -24,17 +25,6 @@ app.set("view engine", "ejs");
 
 // set user's temp
 const temp = library.getTemp();
-
-// set view parameters
-const viewParams = {
-	title: "", 
-	dateString: library.getDate(),
-	loggedIn: false, 
-	message: "", 
-	userId: 1,
-	userName: "",
-	temp: temp
-};
 
 // set up server
 app.listen(PORT, function() {
