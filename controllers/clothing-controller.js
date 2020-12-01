@@ -340,7 +340,7 @@ function prepareUpdate(req, res) {
 	
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {
 		viewParams.title = "Update";
-		viewParams.clothingItem = {clothingType: result.rows.clothingtype}
+		viewParams.clothingItem = {clothingType: result.clothingtype}
 		
 		res.render("pages/update-item", viewParams);
 	});
