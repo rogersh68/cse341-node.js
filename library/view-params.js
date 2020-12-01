@@ -7,7 +7,8 @@ const viewParams = {
 	message: "", 
 	userId: 1,
 	userName: "",
-	temp: library.getTemp()
+	temp: library.getTemp(),
+	clothingItem: {}
 };
 
 module.exports = {
