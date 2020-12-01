@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 5000;
 // imports
 const clothingController = require("./controllers/clothing-controller");
 const userController = require("./controllers/user-controller");
-const viewParams = require("./library/view-params");
+const vp = require("./library/view-params");
+const viewParams = vp.viewParams;
 
 // enable post data parsing
 const bodyParser = require("body-parser");
