@@ -123,9 +123,13 @@ app.post('/update', setUpUpdatePage);
 
 function setUpUpdatePage(req, res) {
 	let clothingId = req.body.clothingId;
-	console.log("CLOTHINGID:");
-	console.log(clothingId);
-	res.render("pages/update-item", viewParams);
+	
+	getClothingByClothingId(clothingId, function(error, result) {
+		viewParams.clothingItem = result;
+		
+		res.render("pages/update-item", viewParams);
+	});
+	
 }
 
 // send delete item page
