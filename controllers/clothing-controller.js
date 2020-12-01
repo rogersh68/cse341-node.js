@@ -346,7 +346,8 @@ function prepareUpdate(req, res) {
 		viewParams.warmRating = result.warmrating;
 		viewParams.casualRating = result.casualrating;
 		viewParams.clothingImage = result.clothingimage;
-		
+		console.log("VIEWPARAMS -->");
+		console.log(viewParams);
 		res.render("pages/update-item", viewParams);
 	});
 	
