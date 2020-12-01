@@ -68,7 +68,7 @@
             $("#outfit_output").empty();
             
             // check if outfit is empty
-            if (outfit != undefined || outfit != null) {
+            if (outfit != undefined || outfit != null || outfit.length > 0) {
                 outfit.forEach(e => {
                     $("#outfit_output").append("<p>" + e.clothingcolor + " " + e.clothingtype + "</p>");
                 });
