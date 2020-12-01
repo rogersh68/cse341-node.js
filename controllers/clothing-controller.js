@@ -1,7 +1,8 @@
 // get model
 const clothingModel = require("../models/clothing-model.js");
 const library = require("../library/functions.js");
-const viewParams = require("../library/view-params.js");
+const vp = require("../library/view-params.js");
+const viewParams = vp.viewParams;
 
 function generateOutfit(req, res) {
 	let userId = req.body.userId;

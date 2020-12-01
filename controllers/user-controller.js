@@ -1,4 +1,6 @@
 const userModel = require("../models/user-model.js");
+const vp = require("../library/view-params.js");
+const viewParams = vp.viewParams;
 
 function loginUser(req, res) {
 	let userEmail = req.body.userEmail;
