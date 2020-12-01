@@ -1,10 +1,7 @@
 /*********************** 
  * SETUP 
  ***********************/
-// imports
-const clothingController = require("./controllers/clothing-controller");
-const userController = require("./controllers/user-controller");
-const library = require("./library/functions");
+
 
 const express = require('express');
 const path = require('path');
@@ -28,6 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
+
+// imports
+const clothingController = require("./controllers/clothing-controller");
+const userController = require("./controllers/user-controller");
+const library = require("./library/functions");
 
 // set user's temp
 const temp = library.getTemp();
