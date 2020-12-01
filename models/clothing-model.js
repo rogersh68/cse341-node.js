@@ -40,8 +40,8 @@ function getClothingByClothingId(clothingId, callback) {
 			callback(error, null);
 		}
 		console.log("--> clothing-model.js > getClothingByClothingId");
-		console.log(result.rows);
-		callback(null, result.rows);
+		console.log(result.rows[0]);
+		callback(null, result.rows[0]);
 	})
 }
 
