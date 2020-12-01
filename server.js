@@ -1,10 +1,8 @@
 /*********************** 
  * SETUP 
  ***********************/
-
 const express = require('express');
 const path = require('path');
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -17,12 +15,6 @@ const library = require("./library/functions");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// Connect to the database
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-require('dotenv').config();
-const connectionString = process.env.DATABASE_URL;
-
 
 // set static directory
 app.use(express.static(path.join(__dirname, 'public')));

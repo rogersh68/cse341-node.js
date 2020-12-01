@@ -1,5 +1,4 @@
-const { Pool } = require('pg');
-const pool = new Pool({connectionString: connectionString});
+const connection = require("../library/connection.js");
 
 function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 	// Set up SQL for query
@@ -9,7 +8,7 @@ function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 	let params = [userId, warmRating];
 
 	// run query, send results to callback function
-	pool.query(sql, params, (error, result) => {
+	connection.pool.query(sql, params, (error, result) => {
 		if (error) {
 			console.log(error);
 			callback(error, null);
@@ -25,7 +24,7 @@ function getClothesByUserId(userId, callback) {
 	let sql = "SELECT * FROM clothing WHERE userid = $1";
 	let params = [userId];
 	
-	pool.query(sql, params, (error, result) => {
+	connection.pool.query(sql, params, (error, result) => {
 		if(error) {
 			console.log(error);
 			callback(error, null);
@@ -38,7 +37,7 @@ function getClothesByUserId(userId, callback) {
 function getClothingByClothingId(clothingId, callback) {
 	let sql = "SELECT * FROM clothing WHERE clothingid = $1";
 	let params = [clothingId];
-	pool.query(sql, params, (error, result) => {
+	connection.pool.query(sql, params, (error, result) => {
 		if (error) {
 			console.log(error);
 			callback(error, null);
@@ -52,7 +51,7 @@ function insertClothingItem(clothingType, clothingColor, warmRating, casualRatin
 	let sql = "INSERT INTO clothing (clothingtype, clothingcolor, warmrating, casualrating, clothingimage, userid) VALUES ($1, $2, $3, $4, $5, $6)"
 	let params = [clothingType, clothingColor, warmRating, casualRating, clothingImage, userId];
 
-	pool.query(sql, params, (error, result) => {
+	connection.pool.query(sql, params, (error, result) => {
 		if (error) {
 			console.log(error);
 			callback(error, null);
