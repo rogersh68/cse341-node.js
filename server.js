@@ -167,7 +167,7 @@ function getDate() {
 
 function getTemp() {
 	/* Uses OpenWeather API to return high temp as an int */
-	return 60;
+	return 80;
 }
 
 function getRandomInt(max) {
