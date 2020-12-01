@@ -125,7 +125,7 @@ function setUpUpdatePage(req, res) {
 	let clothingId = req.body.clothingId;
 	console.log("CLOTHINGID:");
 	console.log(clothingId);
-	res.render("pages/update-item");
+	res.render("pages/update-item", viewParams);
 }
 
 // send delete item page
