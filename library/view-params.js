@@ -8,7 +8,6 @@ const viewParams = {
 	userId: 1,
 	userName: "",
 	temp: library.getTemp(),
-	clothingItem: {}
 };
 
 module.exports = {
