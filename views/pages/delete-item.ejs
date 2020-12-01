@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {title: title}); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <h1>Delete</h1>
+        <form action="/update-item" method="POST">
+            <label for="clothingType">Clothing Type</label>
+            <select name="clothingType" readonly>
+                <option disabled>Select</option>
+                <option>Top</option>
+                <option>Bottom</option>
+                <option>One Piece</option>
+                <option>Outerwear</option>
+                <option>Shoes</option>
+            </select>
+
+            <label for="clothingColor">Color</label>
+            <select name="clothingColor" readonly>
+                <option disabled>Select</option>
+                <option>Red</option>
+                <option>Orange</option>
+                <option>Yellow</option>
+                <option>Green</option>
+                <option>Blue</option>
+                <option>Purple</option>
+                <option>White</option>
+                <option>Black</option>
+                <option>Gray</option>
+                <option>Brown</option>
+            </select>
+
+            <label for="warmRating">Warmth Level</label>
+            <input type="range" min="0" max="5" name="warmRating" readonly>
+
+            <label for="casualRating">Casual Level</label>
+            <input type="range" min="0" max="5" name="casualRating" readonly>
+
+            <label for="clothingImage">Image</label>
+            <input type="text" name="clothingImage" readonly>
+
+            <input type="hidden" name="userId" value="1">
+
+            <input type="submit" value="Delete"> | <a href="/closet">Back</a>
+        </form>
+    </main>
+    <footer>
+        <%- include('../partials/footer', {dateString: dateString}); %>
+    </footer>
+</body>
+</html>
