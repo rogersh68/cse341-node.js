@@ -9,7 +9,8 @@
     </header>
 
     <script>
-        console.log("<%= clothingItem.clothingtype %>");
+        console.log("ClothingItem:")
+        console.log("<%= clothingItem %>");
     </script>
 
     <main>
@@ -24,6 +25,7 @@
                 <option>Outerwear</option>
                 <option>Shoes</option>
             </select>
+            <p><%= clothingItem.clothingtype %></p>
 
             <label for="clothingColor">Color</label>
             <select name="clothingColor">
