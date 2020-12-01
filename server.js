@@ -121,7 +121,7 @@ app.post('/add-item', addClothingItem);
 // send update item page
 app.get('/update', function(req, res) {
 	viewParams.title = "Update Item";
-	res.render('pages/update-item', viewParams);
+	res.render('/pages/update-item', viewParams);
 });
 
 // send delete item page
