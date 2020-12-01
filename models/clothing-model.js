@@ -1,3 +1,6 @@
+const { Pool } = require('pg');
+const pool = new Pool({connectionString: connectionString});
+
 function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 	// Set up SQL for query
 	let sql = "SELECT * FROM clothing WHERE userid = $1 AND warmrating = $2";

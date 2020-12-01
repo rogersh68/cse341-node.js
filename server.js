@@ -2,12 +2,16 @@
  * SETUP 
  ***********************/
 
-
 const express = require('express');
 const path = require('path');
-const { Pool } = require('pg');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// imports
+const clothingController = require("./controllers/clothing-controller");
+const userController = require("./controllers/user-controller");
+const library = require("./library/functions");
 
 // enable post data parsing
 const bodyParser = require("body-parser");
@@ -18,18 +22,13 @@ app.use(bodyParser.json());
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 require('dotenv').config();
 const connectionString = process.env.DATABASE_URL;
-const pool = new Pool({connectionString: connectionString});
+
 
 // set static directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
-
-// imports
-const clothingController = require("./controllers/clothing-controller");
-const userController = require("./controllers/user-controller");
-const library = require("./library/functions");
 
 // set user's temp
 const temp = library.getTemp();
