@@ -132,6 +132,19 @@ function setUpUpdatePage(req, res) {
 	
 }
 
+function getClothingByClothingId(clothingId, callback) {
+	let sql = "SELECT * FROM clothing WHERE clothingid = $1";
+	let params = [clothingId];
+	pool.query(sql, params, (error, result) => {
+		if (error) {
+			console.log(error);
+			callback(error, null);
+		}
+		console.log(result.rows);
+		callback(null, result.rows);
+	})
+}
+
 // send delete item page
 app.get('/delete', function(req, res) {
 	viewParams.title = "Delete Item";
@@ -621,7 +634,6 @@ function getClothesByUserIdAndWarmRating(userId, warmRating, callback) {
 
 	// set up SQL params
 	let params = [userId, warmRating];
-	console.log(params);
 
 	// run query, send results to callback function
 	pool.query(sql, params, (error, result) => {
