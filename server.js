@@ -40,7 +40,7 @@ const viewParams = {
 };
 
 // import controllers
-//const clothingController = require("./controllers/clothing-controller");
+const clothingController = require("./controllers/clothing-controller");
 //const userController = require("./controllers/user-controller");
 
 // set up server
