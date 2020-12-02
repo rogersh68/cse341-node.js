@@ -103,6 +103,7 @@ app.post('/update-item', clothingController.updateClothingItem);
 
 // send delete item page
 app.post('/delete', function(req, res) {
+	viewParams.clothingId = req.body.clothingId;
 	viewParams.title = "Delete Item";
 	res.render('pages/delete-item', viewParams);
 });
