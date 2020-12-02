@@ -8,7 +8,7 @@ function generateOutfit(req, res) {
 	let userId = req.body.userId;
 
 	// get warmRating based on temp
-	let warmRating = getWarmRating(temp);
+	let warmRating = getWarmRating(viewParams.temp);
 
 	const outfit = [];
 
