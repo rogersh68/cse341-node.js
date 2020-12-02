@@ -2,8 +2,20 @@
 <html lang="en">
 <head>
     <%- include('../partials/head', {title: title}); %>
+    <script>
+        function prepareUpdate() {
+            //TODO: get clothingId
+            console.log("Getting all info for clothing item...");
+
+            $.post("/prepare-update", {clothingId:1}, function(clothing) {
+                console.log("back from the server with:");
+                console.log(clothing);
+                $("#clothingType").val(clothing.clothingtype);
+            })
+        }
+    </script>
 </head>
-<body>
+<body onload="prepareUpdate()">
     <header>
         <%- include('../partials/header'); %>
     </header>
@@ -11,7 +23,7 @@
         <h1>Update</h1>
         <form action="/update-item" method="POST">
             <label for="clothingType">Clothing Type</label>
-            <select name="clothingType">
+            <select name="clothingType" id="clothingType">
                 <option disabled>Select</option>
                 <option>Top</option>
                 <option>Bottom</option>
@@ -22,7 +34,7 @@
             <p>Type --> <%= clothingType %></p>
 
             <label for="clothingColor">Color</label>
-            <select name="clothingColor">
+            <select name="clothingColor" id="clothingColor">
                 <option disabled>Select</option>
                 <option>Red</option>
                 <option>Orange</option>
@@ -38,18 +50,18 @@
             <p>Color --> <%= clothingColor %></p>
 
             <label for="warmRating">Warmth Level</label>
-            <input type="range" min="0" max="5" name="warmRating" value="<%= warmRating %>">
+            <input type="range" min="0" max="5" name="warmRating" id="warmRating" value="<%= warmRating %>">
 
             <label for="casualRating">Casual Level</label>
-            <input type="range" min="0" max="5" name="casualRating" value="<%= casualRating %>">
+            <input type="range" min="0" max="5" name="casualRating" id="casualRating" value="<%= casualRating %>">
 
             <label for="clothingImage">Image</label>
-            <input type="text" name="clothingImage" value="<%= clothingImage %>">
+            <input type="text" name="clothingImage" id="clothingImage" value="<%= clothingImage %>">
 
-            <input type="hidden" name="clothingId" value="<%= clothingId %>">
-            <input type="hidden" name="userId" value="1">
+            <input type="hidden" name="clothingId" id="clothingId" value="<%= clothingId %>">
+            <input type="hidden" name="userId" id="userId" value="1">
 
-            <input type="submit" value="Update"> | <a href="/closet">Back</a>
+            <input type="submit" value="Update"> | <a class="back_btn" href="/closet">Back</a>
         </form>
     </main>
     <footer>

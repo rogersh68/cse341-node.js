@@ -339,16 +339,18 @@ function prepareUpdate(req, res) {
 	let clothingId = req.body.clothingId;
 	
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {
-		viewParams.title = "Update Item";
-		viewParams.clothingId = result.clothingid;
-		viewParams.clothingType = result.clothingtype;
-		viewParams.clothingColor = result.clothingcolor;
-		viewParams.warmRating = result.warmrating;
-		viewParams.casualRating = result.casualrating;
-		viewParams.clothingImage = result.clothingimage;
-		console.log("VIEWPARAMS -->");
-		console.log(viewParams);
-		res.render("pages/update-item", viewParams);
+		
+		// viewParams.clothingId = result.clothingid;
+		// viewParams.clothingType = result.clothingtype;
+		// viewParams.clothingColor = result.clothingcolor;
+		// viewParams.warmRating = result.warmrating;
+		// viewParams.casualRating = result.casualrating;
+		// viewParams.clothingImage = result.clothingimage;
+		// console.log("VIEWPARAMS -->");
+		// console.log(viewParams);
+		//res.render("pages/update-item", viewParams);
+
+		res.json(result);
 	});
 	
 }

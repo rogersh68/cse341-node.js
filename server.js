@@ -86,8 +86,24 @@ app.get('/add', function(req, res) {
 // insert clothing item
 app.post('/add-item', clothingController.addClothingItem);
 
+
+
+
+
 // send update item page
-app.post('/update', clothingController.prepareUpdate);
+app.get('/update', function(req, res) {
+	viewParams.title = "Update Item";
+	res.render('pages/update-item', viewParams);
+});
+
+// get info for item being updated
+app.post('/prepare-update', clothingController.prepareUpdate);
+
+// update clothing item in db
+app.post('/update-item', clothingController.updateClothingItem);
+
+
+
 
 // send delete item page
 app.get('/delete', function(req, res) {

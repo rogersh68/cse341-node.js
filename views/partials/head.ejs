@@ -103,7 +103,7 @@
             //append each clothing item to output div
             clothes.forEach(e => {
                 $("#closet_output").append("<p>" + e.clothingcolor + " " + e.clothingtype + 
-                    "<form action='/update' method='POST'>" +
+                    "<form action='/update' method='GET'>" +
                         "<input type='hidden' name='clothingId' value='" + e.clothingid + "'>" +
                         "<input type='submit' value='Update'>" +
                     "</form>" +
