@@ -173,18 +173,18 @@ function generateOutfit(req, res) {
 						outfit.push(top);
 
 						// get random bottom
-						let bottom = compareRating(bottoms, tCasual);
+						let bottom = compareRating(bottoms[0], tCasual);
 						outfit.push(bottom);
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear, tCasual);
+							let outer = compareRating(outerwear[0], tCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes, tCasual);
+							let shoe = compareRating(shoes[0], tCasual);
 							outfit.push(shoe);
 						}
 					}
@@ -198,13 +198,13 @@ function generateOutfit(req, res) {
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear, oCasual);
+							let outer = compareRating(outerwear[0], oCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes, oCasual);
+							let shoe = compareRating(shoes[0], oCasual);
 							outfit.push(shoe);
 						}
 					}
@@ -221,13 +221,13 @@ function generateOutfit(req, res) {
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear, oCasual);
+							let outer = compareRating(outerwear[0], oCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes, oCasual);
+							let shoe = compareRating(shoes[0], oCasual);
 							outfit.push(shoe);
 						}
 					}
@@ -240,18 +240,18 @@ function generateOutfit(req, res) {
 						outfit.push(top);
 
 						// get random bottom
-						let bottom = compareRating(bottoms, tCasual);
+						let bottom = compareRating(bottoms[0], tCasual);
 						outfit.push(bottom);
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear, tCasual);
+							let outer = compareRating(outerwear[0], tCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes, tCasual);
+							let shoe = compareRating(shoes[0], tCasual);
 							outfit.push(shoe);
 						}
 					}
