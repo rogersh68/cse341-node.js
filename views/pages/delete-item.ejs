@@ -11,13 +11,13 @@
         <h1>Delete</h1>
         <form action="/delete-item" method="POST">
             <label for="clothingType">Clothing Type</label>
-            <select name="clothingType" id="clothingType">
+            <select name="clothingType" id="clothingType" disabled>
                 <option disabled>Select</option>
-                <option disabled>Top</option>
-                <option disabled>Bottom</option>
-                <option disabled>One Piece</option>
-                <option disabled>Outerwear</option>
-                <option disabled>Shoes</option>
+                <option>Top</option>
+                <option>Bottom</option>
+                <option>One Piece</option>
+                <option>Outerwear</option>
+                <option>Shoes</option>
             </select>
 
             <label for="clothingColor">Color</label>
@@ -46,7 +46,7 @@
 
             <input type="hidden" name="clothingId" id="clothingId" value="<%= clothingId %>">
             
-            <input type="submit" value="Delete"> | <a class="back_btn" href="/closet">Back</a>
+            <p><input type="submit" value="Delete"> | <a class="back_btn" href="/closet">Back</a></p>
         </form>
     </main>
     <footer>
