@@ -4,13 +4,11 @@
     <%- include('../partials/head', {title: title}); %>
     <script>
         function prepareUpdate() {
-            //TODO: get clothingId
             console.log("Getting all info for clothing item...");
-            console.log("--CLOTHINGID--");
+            
             let clothingId = document.getElementById('clothingId').value;
-            console.log(clothingId);
-
-            $.post("/prepare-update", {clothingId:1}, function(clothing) {
+            
+            $.post("/prepare-update", {clothingId:clothingId}, function(clothing) {
                 console.log("back from the server with:");
                 console.log(clothing);
                 $("#clothingType").val(clothing.clothingtype);
@@ -18,8 +16,7 @@
                 $("#warmRating").val(clothing.warmrating);
                 $("#casualRating").val(clothing.casualrating);
                 $("#clothingImage").val(clothing.clothingimage);
-                
-            })
+            });
         }
     </script>
 </head>

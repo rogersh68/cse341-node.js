@@ -64,9 +64,45 @@ function insertClothingItem(clothingType, clothingColor, warmRating, casualRatin
 	})
 }
 
+function updateClothingItemInDb(clothingId, clothingType, clothingColor, warmRating, casualRating, clothingImage, callback) {
+	let sql = "UPDATE clothing SET clothingtype = $1, clothingcolor = $2, warmrating = $3, casualrating = $4, clothingimage = $5 WHERE clothingid = $6";
+	let params = [clothingType, clothingColor, warmRating, casualRating, clothingImage, clothingId];
+	connection.pool.query(sql, params, (error, result) => {
+		if (error) {
+			console.log("--> clothing-model.js > updateClothingItemInDb");
+			console.log(error);
+			callback(error, null);
+		}
+		db_result = {success:true, list: result.rows}
+		console.log("--> clothing-model.js > updateClothingItemInDb");
+		console.log(db_result)
+		callback(null, db_result);
+	});
+}
+
+function deleteClothingItemInDb(clothingId, callback) {
+	let sql = "DELETE FROM clothing WHERE clothingid = $1";
+	let params = [clothingId];
+	connection.pool.query(sql, params, (error, result) => {
+		if (error) {
+			console.log("--> clothing-model.js > deleteClothingItemInDb");
+			console.log(error);
+			callback(error, null);
+		}
+		db_result = {success:true, list: result.rows}
+		console.log("--> clothing-model.js > deleteClothingItemInDb");
+		console.log(db_result)
+		callback(null, db_result);
+	});
+}
+
+
+
 module.exports = {
 	getClothesByUserIdAndWarmRating: getClothesByUserIdAndWarmRating,
 	getClothesByUserId: getClothesByUserId,
 	getClothingByClothingId: getClothingByClothingId,
-	insertClothingItem: insertClothingItem
+	insertClothingItem: insertClothingItem,
+	updateClothingItemInDb: updateClothingItemInDb,
+	deleteClothingItemInDb: deleteClothingItemInDb
 }

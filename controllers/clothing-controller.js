@@ -326,10 +326,14 @@ function addClothingItem(req, res) {
 
 	clothingModel.insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
 		if(result.success) {
+			viewParams.message = "Item successfully added.";
+			viewParams.title = "My Closet";
 			res.render('pages/closet', viewParams);
 		}
 		else {
-			res.json(result);
+			viewParams.message = "Item was not added, please try again.";
+			viewParams.title = "My Closet";
+			res.render('pages/closet', viewParams);
 		}
 	});
 
@@ -338,29 +342,50 @@ function addClothingItem(req, res) {
 function prepareUpdate(req, res) {
 	let clothingId = req.body.clothingId;
 	
-	clothingModel.getClothingByClothingId(clothingId, function(error, result) {
-		
+	clothingModel.getClothingByClothingId(clothingId, function(error, result) {	
 		viewParams.clothingId = result.clothingid;
-		// viewParams.clothingType = result.clothingtype;
-		// viewParams.clothingColor = result.clothingcolor;
-		// viewParams.warmRating = result.warmrating;
-		// viewParams.casualRating = result.casualrating;
-		// viewParams.clothingImage = result.clothingimage;
-		// console.log("VIEWPARAMS -->");
-		// console.log(viewParams);
-		//res.render("pages/update-item", viewParams);
-
 		res.json(result);
 	});
 	
 }
 
 function updateClothingItem(req, res) {
+	let clothingId = req.body.clothingId;
+	let clothingType = req.body.clothingType;
+	let clothingColor = req.body.clothingColor;
+	let warmRating = req.body.warmRating;
+	let casualRating = req.body.casualRating;
+	let clothingImage = req.body.clothingImage;
 
+	clothingModel.updateClothingItemInDb(clothingId, clothingType, clothingColor, warmRating, casualRating, clothingImage, function(error, result) {
+		if(result.success) {
+			viewParams.message = "Item successfully updated.";
+			viewParams.title = "My Closet";
+			res.render('pages/closet', viewParams);
+		}
+		else {
+			viewParams.message = "Item was not updated, please try again.";
+			viewParams.title = "My Closet";
+			res.render('pages/closet', viewParams);
+		}
+	});
 }
 
 function deleteClothingItem(req, res) {
+	let clothingId = req.body.clothingId;
 
+	clothingModel.deleteClothingItemInDb(clothingId, function(error, result) {
+		if(result.success) {
+			viewParams.message = "Item successfully deleted.";
+			viewParams.title = "My Closet";
+			res.render('pages/closet', viewParams);
+		}
+		else {
+			viewParams.message = "Item was not deleted, please try again.";
+			viewParams.title = "My Closet";
+			res.render('pages/closet', viewParams);
+		}
+	});
 }
 
 module.exports = {
