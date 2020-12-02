@@ -166,7 +166,7 @@ function generateOutfit(req, res) {
 				case 0:
 					if (tops.length != 0 && bottoms.length != 0) {
 						// get random top
-						let iTop = getRandomInt(tops.length);
+						let iTop = library.getRandomInt(tops.length);
 						let top = tops[iTop];
 
 						let tCasual = top.casualrating;
@@ -190,7 +190,7 @@ function generateOutfit(req, res) {
 					}
 					else if (onepieces.length != 0) {
 						// get random onepiece
-						let iOne = getRandomInt(onepieces.length);
+						let iOne = library.getRandomInt(onepieces.length);
 						let onepiece = onepieces[iOne];
 
 						let oCasual = onepiece.casualrating;
@@ -213,7 +213,7 @@ function generateOutfit(req, res) {
 				case 1:
 					if (onepieces.length != 0) {
 						// get random onepiece
-						let iOne = getRandomInt(onepieces.length);
+						let iOne = library.getRandomInt(onepieces.length);
 						let onepiece = onepieces[iOne];
 
 						let oCasual = onepiece.casualrating;
@@ -233,7 +233,7 @@ function generateOutfit(req, res) {
 					}
 					else if (tops.length != 0 && bottoms.length != 0) {
 						// get random top
-						let iTop = getRandomInt(tops.length);
+						let iTop = library.getRandomInt(tops.length);
 						let top = tops[iTop];
 
 						let tCasual = top.casualrating;
