@@ -287,6 +287,8 @@ function compareRating(array, mainRating) {
 	/* Compares ratings of items on an array with the main rating.
 	*  Returns the random item with a similar rating of the main rating. */
 	let item;
+	console.log("--COMPARE RATING ITEM-->");
+	console.log(item);
 	let rating;
 	let tries = 0;
 	let i = library.getRandomInt(array.length);
