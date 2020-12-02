@@ -340,7 +340,7 @@ function prepareUpdate(req, res) {
 	
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {
 		
-		// viewParams.clothingId = result.clothingid;
+		viewParams.clothingId = result.clothingid;
 		// viewParams.clothingType = result.clothingtype;
 		// viewParams.clothingColor = result.clothingcolor;
 		// viewParams.warmRating = result.warmrating;

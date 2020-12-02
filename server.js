@@ -91,7 +91,8 @@ app.post('/add-item', clothingController.addClothingItem);
 
 
 // send update item page
-app.get('/update', function(req, res) {
+app.post('/update', function(req, res) {
+	viewParams.clothingId = req.body.clothingId;
 	viewParams.title = "Update Item";
 	res.render('pages/update-item', viewParams);
 });
