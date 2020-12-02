@@ -177,7 +177,7 @@ function generateOutfit(req, res) {
 						outfit.push(bottom);
 
 						// if temp < 60 and items are on array, add outerwear
-						if (temp < 60 && outerwear.length != 0) {
+						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, tCasual);
 							outfit.push(outer);
 						}
@@ -197,7 +197,7 @@ function generateOutfit(req, res) {
 						outfit.push(onepiece);
 
 						// if temp < 60 and items are on array, add outerwear
-						if (temp < 60 && outerwear.length != 0) {
+						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, oCasual);
 							outfit.push(outer);
 						}
@@ -220,7 +220,7 @@ function generateOutfit(req, res) {
 						outfit.push(onepiece);
 
 						// if temp < 60 and items are on array, add outerwear
-						if (temp < 60 && outerwear.length != 0) {
+						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, oCasual);
 							outfit.push(outer);
 						}
@@ -244,7 +244,7 @@ function generateOutfit(req, res) {
 						outfit.push(bottom);
 
 						// if temp < 60 and items are on array, add outerwear
-						if (temp < 60 && outerwear.length != 0) {
+						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, tCasual);
 							outfit.push(outer);
 						}
