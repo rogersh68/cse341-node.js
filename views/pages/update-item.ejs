@@ -31,7 +31,6 @@
                 <option>Outerwear</option>
                 <option>Shoes</option>
             </select>
-            <p>Type --> <%= clothingType %></p>
 
             <label for="clothingColor">Color</label>
             <select name="clothingColor" id="clothingColor">
@@ -47,18 +46,17 @@
                 <option>Gray</option>
                 <option>Brown</option>
             </select>
-            <p>Color --> <%= clothingColor %></p>
 
             <label for="warmRating">Warmth Level</label>
-            <input type="range" min="0" max="5" name="warmRating" id="warmRating" value="<%= warmRating %>">
+            <input type="range" min="0" max="5" name="warmRating" id="warmRating">
 
             <label for="casualRating">Casual Level</label>
-            <input type="range" min="0" max="5" name="casualRating" id="casualRating" value="<%= casualRating %>">
+            <input type="range" min="0" max="5" name="casualRating" id="casualRating">
 
             <label for="clothingImage">Image</label>
-            <input type="text" name="clothingImage" id="clothingImage" value="<%= clothingImage %>">
+            <input type="text" name="clothingImage" id="clothingImage">
 
-            <input type="hidden" name="clothingId" id="clothingId" value="<%= clothingId %>">
+            <input type="hidden" name="clothingId" id="clothingId">
             <input type="hidden" name="userId" id="userId" value="1">
 
             <input type="submit" value="Update"> | <a class="back_btn" href="/closet">Back</a>
