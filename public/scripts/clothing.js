@@ -45,11 +45,11 @@ function getCloset(userId) {
         //append each clothing item to output div
         clothes.forEach(e => {
             $("#closet_output").append("<p>" + e.clothingcolor + " " + e.clothingtype + 
-                "<form action='/update' method='POST'>" +
+                "<form class='inline' action='/update' method='POST'>" +
                     "<input type='hidden' name='clothingId' value='" + e.clothingid + "'>" +
                     "<input type='submit' value='Update'>" +
                 "</form>" +
-                "<form action='/delete' method='GET'>" +
+                "<form class='inline' action='/delete' method='POST'>" +
                     "<input type='hidden' name='clothingId' value='" + e.clothingid + "'>" +
                     "<input type='submit' value='Delete'>" +
                 "</form" +
