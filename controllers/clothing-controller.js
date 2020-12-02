@@ -283,10 +283,10 @@ function getWarmRating(temp) {
 	}
 }
 
-function compareRating(array, mainRating) {
+function compareRating(list, mainRating) {
 	/* Compares ratings of items on an array with the main rating.
 	*  Returns the random item with a similar rating of the main rating. */
-
+	let array = list[0]
 	console.log("--COMPARE RATING ARRAY-->");
 	console.log(array);
 	console.log("--COMPARE RATING MAINRATING-->");
