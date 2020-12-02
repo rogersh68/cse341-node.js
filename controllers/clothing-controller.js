@@ -339,7 +339,7 @@ function addClothingItem(req, res) {
 
 }
 
-function prepareUpdate(req, res) {
+function getClothingInfo(req, res) {
 	let clothingId = req.body.clothingId;
 	
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {	
@@ -392,7 +392,7 @@ module.exports = {
 	generateOutfit: generateOutfit,
 	getCloset: getCloset,
 	addClothingItem: addClothingItem,
-	prepareUpdate: prepareUpdate,
+	getClothingInfo: getClothingInfo,
 	updateClothingItem: updateClothingItem,
 	deleteClothingItem: deleteClothingItem
 };

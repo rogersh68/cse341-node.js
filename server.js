@@ -88,7 +88,8 @@ app.post('/add-item', clothingController.addClothingItem);
 
 
 
-
+// get info for item being updated/deleted
+app.post('/getInfo', clothingController.getClothingInfo);
 
 // send update item page
 app.post('/update', function(req, res) {
@@ -97,20 +98,17 @@ app.post('/update', function(req, res) {
 	res.render('pages/update-item', viewParams);
 });
 
-// get info for item being updated
-app.post('/prepare-update', clothingController.prepareUpdate);
-
 // update clothing item in db
 app.post('/update-item', clothingController.updateClothingItem);
 
-
-
-
 // send delete item page
-app.get('/delete', function(req, res) {
+app.post('/delete', function(req, res) {
 	viewParams.title = "Delete Item";
 	res.render('pages/delete-item', viewParams);
 });
+
+// delete clothing item in db
+app.post('/delete-item', clothingController.deleteClothingItem);
 
 // generate outfit
 app.post('/generate', clothingController.generateOutfit);
