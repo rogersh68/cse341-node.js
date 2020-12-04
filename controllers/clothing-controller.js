@@ -315,12 +315,13 @@ function compareRating(array, mainRating) {
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
 	while(tries < array.length) {
+		rating = array[i].casualrating;
 		console.log("--RATING--");
 		console.log(rating);
 		console.log("--MAIN RATING--");
 		console.log(mainRating);
 
-		rating = array[i].casualrating;
+		
 		if(rating == mainRating) {
 			item = array[i];
 		}
