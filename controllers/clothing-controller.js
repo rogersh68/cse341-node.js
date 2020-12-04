@@ -286,12 +286,6 @@ function getWarmRating(temp) {
 function compareRating(array, mainRating) {
 	/* Compares ratings of items on an array with the main rating.
 	*  Returns the random item with a similar rating of the main rating. */
-
-	console.log("--COMPARE RATING ARRAY-->");
-	console.log(array);
-	console.log("--COMPARE RATING MAINRATING-->");
-	console.log(mainRating);
-
 	let item;
 	let rating;
 	let tries = 0;
@@ -306,25 +300,22 @@ function compareRating(array, mainRating) {
 	}
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
-	do {
-		console.log("***INSIDE DO STATEMENT***");
-		item = array[i];
-		console.log("--COMPARE RATING ITEM INSIDE DO->");
-		console.log(item);
-		rating = item.casualrating;
-		i++;
-		console.log("--I-->");
-		console.log(i);
-		tries++;
-		console.log("--TRIES-->");
+	while(rating != mainRating || (rating + 1) != mainRating || (rating - 1) != mainRating || tries == array.length) {
 		console.log(tries);
-	} while (rating != mainRating 
-		|| (rating + 1) != mainRating 
-		|| (rating -1) != mainRating 
-		|| tries == array.length);
+		tries++
+	}
+	console.log("--OUT OF LOOP--");
 
-	console.log("--COMPARE RATING ITEM B4 RETURN-->");
-	console.log(item);
+	// do {
+	// 	item = array[i];
+	// 	rating = item.casualrating;
+	// 	i++;
+	// 	tries++;
+	// } while (rating != mainRating 
+	// 	|| (rating + 1) != mainRating 
+	// 	|| (rating -1) != mainRating 
+	// 	|| tries == array.length);
+
 	return item;
 }
 
