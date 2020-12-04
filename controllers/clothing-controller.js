@@ -174,18 +174,24 @@ function generateOutfit(req, res) {
 
 						// get random bottom
 						let bottom = compareRating(bottoms, tCasual);
-						outfit.push(bottom);
+						if(bottom != undefined) {
+							outfit.push(bottom);
+						}
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, tCasual);
-							outfit.push(outer);
+							if(outer != undefined) {
+								outfit.push(outer);
+							}
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
 							let shoe = compareRating(shoes, tCasual);
-							outfit.push(shoe);
+							if(shoe != undefined) {
+								outfit.push(shoe);
+							}
 						}
 					}
 					else if (onepieces.length != 0) {
@@ -199,13 +205,17 @@ function generateOutfit(req, res) {
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, oCasual);
-							outfit.push(outer);
+							if(outer != undefined) {
+								outfit.push(outer);
+							}
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
 							let shoe = compareRating(shoes, oCasual);
-							outfit.push(shoe);
+							if(shoe != undefined) {
+								outfit.push(shoe);
+							}
 						}
 					}
 				break;
@@ -222,13 +232,17 @@ function generateOutfit(req, res) {
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, oCasual);
-							outfit.push(outer);
+							if(outer != undefined) {
+								outfit.push(outer);
+							}
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
 							let shoe = compareRating(shoes, oCasual);
-							outfit.push(shoe);
+							if(shoe != undefined) {
+								outfit.push(shoe);
+							}
 						}
 					}
 					else if (tops.length != 0 && bottoms.length != 0) {
@@ -241,18 +255,24 @@ function generateOutfit(req, res) {
 
 						// get random bottom
 						let bottom = compareRating(bottoms, tCasual);
-						outfit.push(bottom);
+						if(bottom != undefined) {
+							outfit.push(bottom);
+						}
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, tCasual);
-							outfit.push(outer);
+							if(outer != undefined) {
+								outfit.push(outer);
+							}
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
 							let shoe = compareRating(shoes, tCasual);
-							outfit.push(shoe);
+							if(shoe != undefined) {
+								outfit.push(shoe);
+							}
 						}
 					}
 				break;
@@ -294,13 +314,17 @@ function compareRating(array, mainRating) {
 	console.log(i);
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
-	while(tries < array.length || rating != mainRating) {
-		item = array[i];
-		rating = item.casualrating;
+	while(tries < array.length) {
 		console.log("--RATING--");
 		console.log(rating);
 		console.log("--MAIN RATING--");
 		console.log(mainRating);
+
+		rating = array[i].casualrating;
+		if(rating == mainRating) {
+			item = array[i];
+		}
+		
 		i++
 		// if index is over the end of the array start at beginning
 		if (i > array.length - 1) {
@@ -321,7 +345,8 @@ function compareRating(array, mainRating) {
 	// 	|| (rating + 1) != mainRating 
 	// 	|| (rating -1) != mainRating 
 	// 	|| tries == array.length);
-
+	console.log("--ITEM--");
+	console.log(item);
 	return item;
 }
 
