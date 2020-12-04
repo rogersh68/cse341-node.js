@@ -296,6 +296,8 @@ function compareRating(array, mainRating) {
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
 	while(tries < array.length) {
+		item = array[i];
+		console.log("--ITEM--");
 		i++
 		// if index is over the end of the array start at beginning
 		if (i > array.length - 1) {
