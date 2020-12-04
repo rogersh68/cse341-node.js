@@ -173,18 +173,18 @@ function generateOutfit(req, res) {
 						outfit.push(top);
 
 						// get random bottom
-						let bottom = compareRating(bottoms[0], tCasual);
+						let bottom = compareRating(bottoms, tCasual);
 						outfit.push(bottom);
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear[0], tCasual);
+							let outer = compareRating(outerwear, tCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes[0], tCasual);
+							let shoe = compareRating(shoes, tCasual);
 							outfit.push(shoe);
 						}
 					}
@@ -198,13 +198,13 @@ function generateOutfit(req, res) {
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear[0], oCasual);
+							let outer = compareRating(outerwear, oCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes[0], oCasual);
+							let shoe = compareRating(shoes, oCasual);
 							outfit.push(shoe);
 						}
 					}
@@ -221,13 +221,13 @@ function generateOutfit(req, res) {
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear[0], oCasual);
+							let outer = compareRating(outerwear, oCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes[0], oCasual);
+							let shoe = compareRating(shoes, oCasual);
 							outfit.push(shoe);
 						}
 					}
@@ -240,18 +240,18 @@ function generateOutfit(req, res) {
 						outfit.push(top);
 
 						// get random bottom
-						let bottom = compareRating(bottoms[0], tCasual);
+						let bottom = compareRating(bottoms, tCasual);
 						outfit.push(bottom);
 
 						// if temp < 60 and items are on array, add outerwear
 						if (viewParams.temp < 60 && outerwear.length != 0) {
-							let outer = compareRating(outerwear[0], tCasual);
+							let outer = compareRating(outerwear, tCasual);
 							outfit.push(outer);
 						}
 
 						// if shoes not empty add shoes with same casual rating
 						if (shoes.length != 0) {
-							let shoe = compareRating(shoes[0], tCasual);
+							let shoe = compareRating(shoes, tCasual);
 							outfit.push(shoe);
 						}
 					}
@@ -283,10 +283,10 @@ function getWarmRating(temp) {
 	}
 }
 
-function compareRating(list, mainRating) {
+function compareRating(array, mainRating) {
 	/* Compares ratings of items on an array with the main rating.
 	*  Returns the random item with a similar rating of the main rating. */
-	let array = list[0]
+
 	console.log("--COMPARE RATING ARRAY-->");
 	console.log(array);
 	console.log("--COMPARE RATING MAINRATING-->");
@@ -296,23 +296,34 @@ function compareRating(list, mainRating) {
 	let rating;
 	let tries = 0;
 	let i = library.getRandomInt(array.length);
+	console.log("--RANDOM I-->");
+	console.log(i);
 	// if index is over the end of the array start at beginning
 	if (i > array.length - 1) {
 		i = 0;
+		console.log("--I SHOULD BE 0-->");
+		console.log(i);
 	}
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
 	do {
+		console.log("***INSIDE DO STATEMENT***");
 		item = array[i];
+		console.log("--COMPARE RATING ITEM INSIDE DO->");
+		console.log(item);
 		rating = item.casualrating;
 		i++;
+		console.log("--I-->");
+		console.log(i);
 		tries++;
+		console.log("--TRIES-->");
+		console.log(tries);
 	} while (rating != mainRating 
 		|| (rating + 1) != mainRating 
 		|| (rating -1) != mainRating 
 		|| tries == array.length);
 
-	console.log("--COMPARE RATING ITEM-->");
+	console.log("--COMPARE RATING ITEM B4 RETURN-->");
 	console.log(item);
 	return item;
 }
