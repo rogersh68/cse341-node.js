@@ -300,7 +300,10 @@ function compareRating(array, mainRating) {
 	}
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
-	while(rating != mainRating || (rating + 1) != mainRating || (rating - 1) != mainRating || tries != array.length) {
+	while(rating != mainRating || (rating + 1) != mainRating || (rating - 1) != mainRating || tries < array.length) {
+		console.log("ARRAY LENGTH:")
+		console.log(array.length)
+		console.log("TRIES:")
 		console.log(tries);
 		tries++
 	}
