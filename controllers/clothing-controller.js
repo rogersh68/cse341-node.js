@@ -292,19 +292,17 @@ function compareRating(array, mainRating) {
 	let i = library.getRandomInt(array.length);
 	console.log("--RANDOM I-->");
 	console.log(i);
-	// if index is over the end of the array start at beginning
-	if (i > array.length - 1) {
-		i = 0;
-		console.log("--I SHOULD BE 0-->");
-		console.log(i);
-	}
+	
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
 	while(tries < array.length) {
-		console.log("ARRAY LENGTH:")
-		console.log(array.length)
-		console.log("TRIES:")
-		console.log(tries);
+		i++
+		// if index is over the end of the array start at beginning
+		if (i > array.length - 1) {
+			i = 0;
+			console.log("--I SHOULD BE 0-->");
+			console.log(i);
+		}
 		tries++
 	}
 	console.log("--OUT OF LOOP--");
