@@ -310,44 +310,21 @@ function compareRating(array, mainRating) {
 	let rating;
 	let tries = 0;
 	let i = library.getRandomInt(array.length);
-	console.log("--RANDOM I-->");
-	console.log(i);
+
 	// go through items until casual rating is around  the main rating
 	// or goes through entire array
 	while(tries < array.length) {
 		rating = array[i].casualrating;
-		console.log("--RATING--");
-		console.log(rating);
-		console.log("--MAIN RATING--");
-		console.log(mainRating);
-
-		
-		if(rating == mainRating) {
+		if(rating == mainRating || (rating + 1) == mainRating || (rating - 1) == mainRating) {
 			item = array[i];
 		}
-		
 		i++
 		// if index is over the end of the array start at beginning
 		if (i > array.length - 1) {
 			i = 0;
-			console.log("--I SHOULD BE 0-->");
-			console.log(i);
 		}
 		tries++
 	}
-	console.log("--OUT OF LOOP--");
-
-	// do {
-	// 	item = array[i];
-	// 	rating = item.casualrating;
-	// 	i++;
-	// 	tries++;
-	// } while (rating != mainRating 
-	// 	|| (rating + 1) != mainRating 
-	// 	|| (rating -1) != mainRating 
-	// 	|| tries == array.length);
-	console.log("--ITEM--");
-	console.log(item);
 	return item;
 }
 
