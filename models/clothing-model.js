@@ -55,13 +55,13 @@ function insertClothingItem(clothingType, clothingColor, warmRating, casualRatin
 			callback(error, null);
 		}
 		db_result = {
-			success:true,
+			success: true,
 			list: result.rows
 		}
 		console.log("--> clothing-model.js > insertClothingItem");
 		console.log(db_result)
 		callback(null, db_result)
-	})
+	});
 }
 
 function updateClothingItemInDb(clothingId, clothingType, clothingColor, warmRating, casualRating, clothingImage, callback) {

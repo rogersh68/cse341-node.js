@@ -46,6 +46,22 @@ function logoutUser(req, res) {
 }
 
 function createAccount(req, res) {
+	let firstName = req.body.firstName;
+	let lastName = req.body.lastName;
+	let userEmail = req.body.userEmail;
+	let userPassword = req.body.userPassword;
+
+	userModel.insertUser(firstName, lastName, userEmail, userPassword, function(err, result) {
+		// check for errors
+		if (err || !result.success) {
+			viewParams.message = "Could not create account. Please try again.";
+			res.render('pages/login', viewParams);
+		}
+		else {
+			viewParams.message = "Account successfully created. Please login.";
+			res.render('pages/login', viewParams);
+		}
+	});
 	
 }
 

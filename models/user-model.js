@@ -19,7 +19,22 @@ function getUserByEmail(userEmail, callback) {
 }
 
 function insertUser(firstName, lastName, userEmail, userPassword, callback) {
-
+	let sql = "INSERT INTO public.user (firstname, lastname, useremail, userpassword) VALUES ($1, $2, $3, $4)";
+	let params = [firstName, lastName, userEmail, userPassword];
+	connection.pool.query(sql, params, (error, result) => {
+		if (error) {
+			console.log("--> user-model.js > insertUser");
+			console.log(error);
+			callback(error, {success: false});
+		}
+		db_result = {
+			success: true,
+			list: result.rows
+		}
+		console.log("--> user-model.js > insertUser");
+		console.log(db_result);
+		callback(null, db_result)
+	});
 }
 
 module.exports = {
