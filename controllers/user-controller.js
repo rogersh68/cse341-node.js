@@ -10,21 +10,18 @@ function loginUser(req, res) {
 	let userEmail = req.body.userEmail;
 	let userPassword = req.body.userPassword;
 
-	console.log("LOGIN USER");
-
 	userModel.getUserByEmail(userEmail, function(error, result) {
 		// check for errors
 		if(error || result == null || result.length != 1) {
-			console.log("LOGIN ERROR");
-
 			viewParams.title = "Login";
 			viewParams.message = "Login error. Please try again.";
 			res.render('pages/login', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 		// compare passwords and log user in if they match
 		else {
 			let userInfo = result[0];
-			console.log("LOGGING IN");
 
 			// log user in
 			// TODO: compare hashed passwords
@@ -32,8 +29,6 @@ function loginUser(req, res) {
 				// set session variables
 				req.session.loggedIn = true;
 				req.session.userId = userInfo.userid;
-				console.log("--SESSION--");
-				console.log(req.session);
 
 				// set view parameters
 				viewParams.title = "Home";
@@ -49,6 +44,8 @@ function loginUser(req, res) {
 				viewParams.title = "Login";
 				viewParams.message = "Incorrect password. Please try again.";
 				res.render('pages/login', viewParams);
+				viewParams.message = "";
+				res.end();
 			}
 		}
 	});
@@ -98,11 +95,15 @@ function createAccount(req, res) {
 			viewParams.title = "Login";
 			viewParams.message = "Could not create account. Please try again.";
 			res.render('pages/login', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 		else {
 			viewParams.title = "Login";
 			viewParams.message = "Account successfully created. Please login.";
 			res.render('pages/login', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 	});
 }

@@ -18,7 +18,6 @@ function generateOutfit(req, res) {
 			console.log(error);
 		}
 		else {
-			console.log("TEMP --> " + temp);
 			let warmRating = getWarmRating(temp);
 
 			const outfit = [];
@@ -29,6 +28,8 @@ function generateOutfit(req, res) {
 					viewParams.title = "Home";
 					viewParams.message = "Error getting outfit. Please try again.";
 					res.render('pages/home', viewParams);
+					viewParams.message = "";
+					res.end();
 				}
 				// generate outfit
 				else {
@@ -254,7 +255,6 @@ function generateOutfit(req, res) {
 			});
 		}
 	});
-	
 }
 
 function getTemp(userId, callback) {
@@ -384,11 +384,15 @@ function addClothingItem(req, res) {
 			viewParams.message = "Item successfully added.";
 			viewParams.title = "My Closet";
 			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 		else {
 			viewParams.message = "Item was not added, please try again.";
 			viewParams.title = "My Closet";
 			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 	});
 }
@@ -399,13 +403,12 @@ function getClothingInfo(req, res) {
 	let clothingId = req.body.clothingId;
 	
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {	
-		console.log("ERROR --> " + error);
-		console.log("RESULT --> " + result[0]);
-		console.log("RESULT LENGTH --> " + result.length);
 		if (error || result == null || result.length != 1) {
 			viewParams.title = "My Closet";
 			viewParams.message = "Could not get information for item. Please try again.";
 			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 		else {
 			viewParams.clothingId = result[0].clothingid;
@@ -429,11 +432,15 @@ function updateClothingItem(req, res) {
 			viewParams.message = "Item successfully updated.";
 			viewParams.title = "My Closet";
 			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 		else {
 			viewParams.message = "Item was not updated, please try again.";
 			viewParams.title = "My Closet";
 			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 	});
 }
@@ -448,11 +455,15 @@ function deleteClothingItem(req, res) {
 			viewParams.message = "Item successfully deleted.";
 			viewParams.title = "My Closet";
 			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 		else {
 			viewParams.message = "Item was not deleted, please try again.";
 			viewParams.title = "My Closet";
 			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
 		}
 	});
 }

@@ -44,21 +44,11 @@ app.listen(PORT, function() {
 app.get('/', function(req, res) {
 	viewParams.title = "Home";
 	res.render('pages/home', viewParams);
-
-	// if (viewParams.loggedIn == false) {
-	// 	viewParams.title = "Login";
-	// 	res.render('pages/login', viewParams);
-	// }
-	// else {
-	// 	viewParams.title = "Home";
-	// 	res.render('pages/home', viewParams);
-	// }
 });
 
 // send login page
 app.get('/login', function(req, res) {
 	viewParams.title = "Login";
-	viewParams.message = "";
 	res.render('pages/login', viewParams)
 });
 
@@ -71,7 +61,6 @@ app.get('/logout', userController.logoutUser);
 // send create account page
 app.get('/create', function(req, res) {
 	viewParams.title = "Create Account";
-	viewParams.message = "";
 	res.render('pages/create-account', viewParams);
 });
 
