@@ -257,7 +257,11 @@ function getTemp(userId) {
 	// console.log("API KEY --> " + process.env['API_ID']);
 	// console.log("URL --> " + url);
 
+	
 	let url = getUrl(userId);
+	while (url == undefined) {
+		console.log("URL --> " + url);
+	}
 	console.log("URL --> " + url);
     fetch(url)
         .then((response) => response.json())
