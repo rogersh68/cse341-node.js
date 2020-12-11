@@ -8,6 +8,9 @@ const session = require('express-session');
 //const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 5000;
 
+// set static directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // imports
 const clothingController = require("./controllers/clothing-controller");
 const userController = require("./controllers/user-controller");
@@ -22,12 +25,6 @@ app.use(bodyParser.json());
 // set up session
 app.use(session({secret: 'shhhh', saveUninitialized: true, resave: false}));
 
-// set up login verification
-app.use(userController.verifyLogin);
-
-// set static directory
-app.use(express.static(path.join(__dirname, 'public')));
-
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
@@ -35,6 +32,9 @@ app.set("view engine", "ejs");
 app.listen(PORT, function() {
     console.log("The server is listening");
 });
+
+// set up login verification
+app.use(userController.verifyLogin);
 
 /***********************
  * ROUTES 
