@@ -76,7 +76,8 @@ function logoutUser(req, res) {
 		viewParams.message = "";
 		viewParams.userId = 0;
 		viewParams.userName = "";
-		// res.render('pages/login', viewParams);
+		viewParams.title = "Login";
+		res.render('pages/login', viewParams);
 	}
 }
 
