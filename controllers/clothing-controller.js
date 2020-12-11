@@ -255,7 +255,7 @@ function getTemp(userId) {
 	console.log("userId --> " + userId);
 	console.log("zipcode --> " + getZip(userId));
 	
-    let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + getZip(userId) + ",us&units=imperial&" + process.env['API_ID'];
+    let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + 84651 + ",us&units=imperial&" + process.env['API_ID'];
 
     fetch(url)
         .then((response) => response.json())
@@ -279,7 +279,7 @@ function getTemp(userId) {
 function getZip(userId) {
 	/* Returns the user's zip code */
 	userModel.getZipCodeByUserId(userId, function(error, result) {
-		if (error) {
+		if (error || reslut == undefined) {
 			console.error('There was a problem getting the zip code: ', error);
 			return 84044;
 		}
