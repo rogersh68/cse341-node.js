@@ -46,8 +46,9 @@ function loginUser(req, res) {
 }
 
 function verifyLogin(req, res, next) {
-	if (req.session.loggedIn) {
-		// user is logged in, continue to next function
+	if (req.session.loggedIn || req.url == '/create' || req.url == '/createAccount') {
+		// user is logged in, logging in, or creating account
+		// continue to next function
 		next();
 	}
 	else {
