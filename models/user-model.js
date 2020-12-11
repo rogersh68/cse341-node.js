@@ -26,7 +26,7 @@ function getUserByEmail(userEmail, callback) {
 
 function getZipCodeByUserId(userId, callback) {
 	// set up sql for query
-	let sql = "SELECT zipcode FROM public.user WHERE userid = $1";
+	let sql = "SELECT * FROM public.user WHERE userid = $1";
 
 	// set up sql parameters
 	let params = [userId];
