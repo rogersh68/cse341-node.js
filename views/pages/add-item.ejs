@@ -11,7 +11,7 @@
         <h1>Add New Item</h1>
         <form action="/add-item" method="POST">
             <label for="clothingType">Clothing Type</label>
-            <select name="clothingType">
+            <select name="clothingType" required>
                 <option disabled selected>Select</option>
                 <option>Top</option>
                 <option>Bottom</option>
@@ -21,7 +21,7 @@
             </select>
 
             <label for="clothingColor">Color</label>
-            <select name="clothingColor">
+            <select name="clothingColor" required>
                 <option disabled selected>Select</option>
                 <option>Red</option>
                 <option>Orange</option>
@@ -36,17 +36,19 @@
             </select>
 
             <label for="warmRating">Warmth Level</label>
-            <input type="range" min="0" max="5" name="warmRating">
+            <input type="range" min="0" max="5" name="warmRating" required>
 
             <label for="casualRating">Casual Level</label>
-            <input type="range" min="0" max="5" name="casualRating">
+            <input type="range" min="0" max="5" name="casualRating" required>
 
             <label for="clothingImage">Image</label>
-            <input type="text" name="clothingImage">
+            <input type="text" name="clothingImage" required>
 
             <input type="hidden" name="userId" value="1">
 
-            <input type="submit" value="Add"> | <a href="/closet">Back</a>
+            <br><br>
+
+            <input class="button inline" type="submit" value="Add"> | <a href="/closet">Back</a>
         </form>
     </main>
     <footer>

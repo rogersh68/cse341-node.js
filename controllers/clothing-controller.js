@@ -1,23 +1,30 @@
-// get model
+// imports
 const clothingModel = require("../models/clothing-model.js");
 const library = require("../library/functions.js");
 const vp = require("../library/view-params.js");
+const userModel = require("../models/user-model.js");
 const viewParams = vp.viewParams;
+const fetch = require("node-fetch");
 
 function generateOutfit(req, res) {
+	/* Takes into account warmth of clothing for temp, colors for the season, 
+	and casualness between items and returns a randomly generated outfit */
+	// TODO: validate user id
 	let userId = req.body.userId;
 
 	// get warmRating based on temp
-	let warmRating = getWarmRating(viewParams.temp);
+	var temp = getTemp(viewParams.userId);
+	viewParams.temp = temp;
+	let warmRating = getWarmRating(temp);
 
 	const outfit = [];
 
 	clothingModel.getClothesByUserIdAndWarmRating(userId, warmRating, function(error, result) {
 		// check for errors
 		if(error || result == null) {
+			viewParams.title = "Home";
 			viewParams.message = "Error getting outfit. Please try again.";
 			res.render('pages/home', viewParams);
-			res.end();
 		}
 		// generate outfit
 		else {
@@ -31,126 +38,85 @@ function generateOutfit(req, res) {
 			// clothing types onto different arrays
 			let date = new Date();
 			let month = date.getMonth() + 1;
-			console.log(result);
 			result.forEach(e => {
 				switch(e.clothingtype) {
 					case "Top":
-						//check if season is fall/winter
+						// check if season is fall/winter
 						if (month >= 9 && month <= 12 ) {
 							// add fall/winter colors to list
-							if (e.clothingcolor == "Red" 
-							|| e.clothingcolor == "Orange" 
-							|| e.clothingcolor == "Purple" 
-							|| e.clothingcolor == "Black" 
-							|| e.clothingcolor == "Brown") {
+							if (checkFallWinterColors(e.clothingcolor)) {
 								tops.push(e);
 							}
 						}
 						// otherwise season is spring/summer
 						else {
 							// add spring/summer colors to list
-							if (e.clothingcolor == "Yellow" 
-							|| e.clothingcolor == "Green" 
-							|| e.clothingcolor == "Blue" 
-							|| e.clothingcolor == "White" 
-							|| e.clothingcolor == "Gray") {
-								tops.push(e)
+							if (checkSpringSummerColors(e.clothingcolor)) {
+								tops.push(e);
 							}
 						}
 						break;
 					case "Bottom":
-						//check if season is fall/winter
+						// check if season is fall/winter
 						if (month >= 9 && month <= 12 ) {
 							// add fall/winter colors to list
-							if (e.clothingcolor == "Red" 
-							|| e.clothingcolor == "Orange" 
-							|| e.clothingcolor == "Purple" 
-							|| e.clothingcolor == "Black" 
-							|| e.clothingcolor == "Brown") {
+							if (checkFallWinterColors(e.clothingcolor)) {
 								bottoms.push(e);
 							}
 						}
 						// otherwise season is spring/summer
 						else {
 							// add spring/summer colors to list
-							if (e.clothingcolor == "Yellow" 
-							|| e.clothingcolor == "Green" 
-							|| e.clothingcolor == "Blue" 
-							|| e.clothingcolor == "White" 
-							|| e.clothingcolor == "Gray") {
-								bottoms.push(e)
+							if (checkSpringSummerColors(e.clothingcolor)) {
+								bottoms.push(e);
 							}
 						}
 						break;
 					case "Outerwear":
-						//check if season is fall/winter
+						// check if season is fall/winter
 						if (month >= 9 && month <= 12 ) {
 							// add fall/winter colors to list
-							if (e.clothingcolor == "Red" 
-							|| e.clothingcolor == "Orange" 
-							|| e.clothingcolor == "Purple" 
-							|| e.clothingcolor == "Black" 
-							|| e.clothingcolor == "Brown") {
+							if (checkFallWinterColors(e.clothingcolor)) {
 								outerwear.push(e);
 							}
 						}
 						// otherwise season is spring/summer
 						else {
 							// add spring/summer colors to list
-							if (e.clothingcolor == "Yellow" 
-							|| e.clothingcolor == "Green" 
-							|| e.clothingcolor == "Blue" 
-							|| e.clothingcolor == "White" 
-							|| e.clothingcolor == "Gray") {
-								outerwear.push(e)
+							if (checkSpringSummerColors(e.clothingcolor)) {
+								outerwear.push(e);
 							}
 						}
 						break;
 					case "Shoes":
-						//check if season is fall/winter
+						// check if season is fall/winter
 						if (month >= 9 && month <= 12 ) {
 							// add fall/winter colors to list
-							if (e.clothingcolor == "Red" 
-							|| e.clothingcolor == "Orange" 
-							|| e.clothingcolor == "Purple" 
-							|| e.clothingcolor == "Black" 
-							|| e.clothingcolor == "Brown") {
+							if (checkFallWinterColors(e.clothingcolor)) {
 								shoes.push(e);
 							}
 						}
 						// otherwise season is spring/summer
 						else {
 							// add spring/summer colors to list
-							if (e.clothingcolor == "Yellow" 
-							|| e.clothingcolor == "Green" 
-							|| e.clothingcolor == "Blue" 
-							|| e.clothingcolor == "White" 
-							|| e.clothingcolor == "Gray") {
-								shoes.push(e)
+							if (checkSpringSummerColors(e.clothingcolor)) {
+								shoes.push(e);
 							}
 						}
 						break;
 					case "One Piece":
-						//check if season is fall/winter
+						// check if season is fall/winter
 						if (month >= 9 && month <= 12 ) {
 							// add fall/winter colors to list
-							if (e.clothingcolor == "Red" 
-							|| e.clothingcolor == "Orange" 
-							|| e.clothingcolor == "Purple" 
-							|| e.clothingcolor == "Black" 
-							|| e.clothingcolor == "Brown") {
+							if (checkFallWinterColors(e.clothingcolor)) {
 								onepieces.push(e);
 							}
 						}
 						// otherwise season is spring/summer
 						else {
 							// add spring/summer colors to list
-							if (e.clothingcolor == "Yellow" 
-							|| e.clothingcolor == "Green" 
-							|| e.clothingcolor == "Blue" 
-							|| e.clothingcolor == "White" 
-							|| e.clothingcolor == "Gray") {
-								onepieces.push(e)
+							if (checkSpringSummerColors(e.clothingcolor)) {
+								onepieces.push(e);
 							}
 						}
 						break;
@@ -179,7 +145,7 @@ function generateOutfit(req, res) {
 						}
 
 						// if temp < 60 and items are on array, add outerwear
-						if (viewParams.temp < 60 && outerwear.length != 0) {
+						if (temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, tCasual);
 							if(outer != undefined) {
 								outfit.push(outer);
@@ -203,7 +169,7 @@ function generateOutfit(req, res) {
 						outfit.push(onepiece);
 
 						// if temp < 60 and items are on array, add outerwear
-						if (viewParams.temp < 60 && outerwear.length != 0) {
+						if (temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, oCasual);
 							if(outer != undefined) {
 								outfit.push(outer);
@@ -230,7 +196,7 @@ function generateOutfit(req, res) {
 						outfit.push(onepiece);
 
 						// if temp < 60 and items are on array, add outerwear
-						if (viewParams.temp < 60 && outerwear.length != 0) {
+						if (temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, oCasual);
 							if(outer != undefined) {
 								outfit.push(outer);
@@ -260,7 +226,7 @@ function generateOutfit(req, res) {
 						}
 
 						// if temp < 60 and items are on array, add outerwear
-						if (viewParams.temp < 60 && outerwear.length != 0) {
+						if (temp < 60 && outerwear.length != 0) {
 							let outer = compareRating(outerwear, tCasual);
 							if(outer != undefined) {
 								outfit.push(outer);
@@ -278,34 +244,101 @@ function generateOutfit(req, res) {
 				break;
 			}	
 			
-			// send outfit
-			res.json(outfit);
+			// send outfit and temp
+			res.json({"outfit" : outfit, "temp" : temp});
 		}
+	});
+}
+
+function getTemp(userId) {
+	/* Uses OpenWeather API to return high temp as an int */
+	console.log("--GET TEMP--");
+	console.log("userId --> " + userId);
+	console.log("zipcode --> " + getZip(userId));
+	
+    let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + getZip(userId) + ",us&units=imperial&" + process.env['API_ID'];
+
+    fetch(url)
+        .then((response) => response.json())
+        .then((jsObject) => {
+			if (jsObject != undefined) {
+				return Math.round(jsObject.main.temp_max);
+			}
+			else {
+				return 60;
+			}
+        })
+        .catch(error => {
+            console.error('There was a problem getting the temp: ', error);
+            return 60;
+        });
+}
+
+function getZip(userId) {
+	/* Returns the user's zip code */
+	userModel.getZipCodeByUserId(userId, function(error, result) {
+		if (error) {
+			console.error('There was a problem getting the zip code: ', error);
+			return 84044;
+		}
+		console.log(result);
+		return result;
 	});
 }
 
 function getWarmRating(temp) {
 	/* Returns the warm rating based on the temp */
 	if (temp < 40) {
-		return 5
+		return 5;
 	}
 	else if (temp < 50) {
-		return 4
+		return 4;
 	}
 	else if (temp < 60) {
-		return 3
+		return 3;
 	}
 	else if (temp < 70) {
-		return 2
+		return 2;
+	}
+	else if (temp < 80) {
+		return 1;
 	}
 	else {
-		return 1
+		return 0;
+	}
+}
+
+function checkFallWinterColors(color) {
+	/* Verifies colors match Fall/Winter season */
+	if (color == "Red" 
+	|| color == "Orange" 
+	|| color == "Purple" 
+	|| color == "Black" 
+	|| color == "Brown") {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+function checkSpringSummerColors(color) {
+	/* Verifies colors match Spring/Summer season */
+	if (color == "Yellow" 
+	|| color == "Green" 
+	|| color == "Blue" 
+	|| color == "White" 
+	|| color == "Gray") {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 
 function compareRating(array, mainRating) {
 	/* Compares ratings of items on an array with the main rating.
-	*  Returns the random item with a similar rating of the main rating. */
+	Returns the random item with a similar rating of the main rating. */
 	let item;
 	let rating;
 	let tries = 0;
@@ -318,17 +351,19 @@ function compareRating(array, mainRating) {
 		if(rating == mainRating || (rating + 1) == mainRating || (rating - 1) == mainRating) {
 			item = array[i];
 		}
-		i++
+		i++;
 		// if index is over the end of the array start at beginning
 		if (i > array.length - 1) {
 			i = 0;
 		}
-		tries++
+		tries++;
 	}
 	return item;
 }
 
 function getCloset(req, res) {
+	/* Returns all the items of clothing assosiated with the current user. */
+	// TODO: validate user id
 	let userId = req.body.userId;
 
 	clothingModel.getClothesByUserId(userId, function(error, result) {
@@ -337,6 +372,8 @@ function getCloset(req, res) {
 }
 
 function addClothingItem(req, res) {
+	/* Adds the clothing item specified by the user into the database. */
+	// TODO: Validate user input
 	let clothingType = req.body.clothingType;
 	let clothingColor = req.body.clothingColor;
 	let warmRating = req.body.warmRating;
@@ -356,20 +393,29 @@ function addClothingItem(req, res) {
 			res.render('pages/closet', viewParams);
 		}
 	});
-
 }
 
 function getClothingInfo(req, res) {
+	/* Returns all information in the database associated with a specified clothing item. */
+	// TODO: validate clothing id
 	let clothingId = req.body.clothingId;
 	
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {	
-		viewParams.clothingId = result.clothingid;
-		res.json(result);
+		if (error || result == null || result.length != 1) {
+			viewParams.title = "My Closet";
+			viewParams.message = "Could not get information for item. Please try again.";
+			res.render('pages/closet', veiwParams);
+		}
+		else {
+			viewParams.clothingId = result.clothingid;
+			res.json(result);
+		}
 	});
-	
 }
 
 function updateClothingItem(req, res) {
+	/* Updates a specified clothing item in the database */
+	// TODO: validate user input
 	let clothingId = req.body.clothingId;
 	let clothingType = req.body.clothingType;
 	let clothingColor = req.body.clothingColor;
@@ -392,6 +438,8 @@ function updateClothingItem(req, res) {
 }
 
 function deleteClothingItem(req, res) {
+	/* Removes a specified item from the database. */
+	// TODO: validate clothing id
 	let clothingId = req.body.clothingId;
 
 	clothingModel.deleteClothingItemInDb(clothingId, function(error, result) {

@@ -4,6 +4,8 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const session = require('express-session');
+//const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 5000;
 
 // imports
@@ -16,6 +18,12 @@ const viewParams = vp.viewParams;
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// set up session
+app.use(session({secret: 'shhhh', saveUninitialized: true, resave: false}));
+
+// set up login verification
+app.use(userController.verifyLogin);
 
 // set static directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,19 +41,18 @@ app.listen(PORT, function() {
  ***********************/
 
 // send home page
-app.get('/', function(req, res) { //TODO: reset if/else
-	// //testing
-	// viewParams.title = "Home";
-	// res.render('pages/home', viewParams);
+app.get('/', function(req, res) {
+	viewParams.title = "Home";
+	res.render('pages/home', viewParams);
 
-	if (viewParams.loggedIn == false) {
-		viewParams.title = "Login";
-		res.render('pages/login', viewParams);
-	}
-	else {
-		viewParams.title = "Home";
-		res.render('pages/home', viewParams);
-	}
+	// if (viewParams.loggedIn == false) {
+	// 	viewParams.title = "Login";
+	// 	res.render('pages/login', viewParams);
+	// }
+	// else {
+	// 	viewParams.title = "Home";
+	// 	res.render('pages/home', viewParams);
+	// }
 });
 
 // send login page
@@ -85,8 +92,6 @@ app.get('/add', function(req, res) {
 
 // insert clothing item
 app.post('/add-item', clothingController.addClothingItem);
-
-
 
 // get info for item being updated/deleted
 app.post('/getInfo', clothingController.getClothingInfo);

@@ -3,6 +3,7 @@ CREATE TABLE public.user
     userId SERIAL NOT NULL PRIMARY KEY,
     firstName VARCHAR(100) NOT NULL,
     lastName VARCHAR(100) NOT NULL,
+    zipCode INT NOT NULL,
     userEmail VARCHAR(100) NOT NULL,
 	userPassword VARCHAR(100) NOT NULL
 );

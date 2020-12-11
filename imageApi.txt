@@ -1,0 +1,10 @@
+Environment Variable: cloudinary://588532794221652:D2vGC6R8sfBoy56Eg2AzhmKxiZ8@dv3f6je01
+API Secret: D2vGC6R8sfBoy56Eg2AzhmKxiZ8
+API Key: 588532794221652
+Cloud Name: dv3f6je01
+
+Sample Upload Code - Node.js
+cloudinary.uploader.upload("sample.jpg", {"crop":"limit","tags":"samples","width":3000,"height":2000}, function(result) { console.log(result) });
+
+Sample Image manipulation tag
+cloudinary.image("sample", {"crop":"fill","gravity":"faces","width":300,"height":200,"format":"jpg"});

@@ -24,6 +24,30 @@ function getUserByEmail(userEmail, callback) {
 	});
 }
 
+function getZipCodeByUserId(userId, callback) {
+	// set up sql for query
+	let sql = "SELECT zipcode FROM public.user WHERE userid = $1";
+
+	// set up sql parameters
+	let params = [userId];
+
+	// run query, send results to callback function
+	connection.pool.query(sql, params, (error, result) => {
+		if (error) {
+			console.log("--> user-model.js > getZipCodeByUserId");
+			console.log(error);
+
+			// send back error
+			callback(error, null);
+		}
+		console.log("--> user-model.js > getZipCodeByUserId");
+		console.log(result.rows.zipcode);
+
+		// send back results
+		callback(null, result.rows.zipcode);
+	});
+}
+
 function insertUser(firstName, lastName, userEmail, userPassword, callback) {
 	// set up sql for query
 	let sql = "INSERT INTO public.user (firstname, lastname, useremail, userpassword) VALUES ($1, $2, $3, $4)";
@@ -49,6 +73,7 @@ function insertUser(firstName, lastName, userEmail, userPassword, callback) {
 }
 
 module.exports = {
-    getUserByEmail: getUserByEmail,
+	getUserByEmail: getUserByEmail,
+	getZipCodeByUserId: getZipCodeByUserId,
     insertUser: insertUser
 }

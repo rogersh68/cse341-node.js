@@ -9,24 +9,29 @@
     </header>
     <main>
         <!-- Display message -->
-        <div id="message_sticky"><%= message %></div>
+        <div id="message_sticky" class="warning"><%= message %></div>
 
         <h1>Create Account</h1>
         <div>
             <form action="/createAccount" method="POST">
-                <label for="firstName">First Name</label>
+                <label for="firstName" required>First Name</label>
                 <input type="text" name="firstName">
 
-                <label for="lastName">Last Name</label>
+                <label for="lastName" required>Last Name</label>
                 <input type="text" name="lastName">
 
-                <label for="userEmail">Email</label>
+                <label for="zipCode" required>Zip Code</label>
+                <input type="text" name="zipCode">
+
+                <label for="userEmail" required>Email</label>
                 <input type="text" name="userEmail">
 
-                <label for="userPassword">Password</label>
+                <label for="userPassword" required>Password</label>
                 <input type="password" name="userPassword">
 
-                <input type="submit" value="Create Account">
+                <br><br>
+                
+                <input class="button" type="submit" value="Create Account">
             </form>
         </div>
     </main>

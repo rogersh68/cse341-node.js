@@ -12,22 +12,22 @@
     </header>
     <main>
         <!-- Display message -->
-        <div id="message_sticky"><%= message %></div>
+        <div id="message_sticky" class="warning"><%= message %></div>
 
         <h1>Login</h1>
         <div>
             <form action="/loginUser" method="POST">
                 <label for="userEmail">Email</label>
-                <input type="text" name="userEmail">
+                <input type="text" name="userEmail" required>
                 <br>
                 <label for="userPassword">Password</label>
-                <input type="password" name="userPassword">
-                <br>
-                <input type="submit" value="Login">
+                <input type="password" name="userPassword" required>
+                <br><br>
+                <input class="button" type="submit" value="Login">
             </form>
-            
+            <hr id="separator">
             <form action="/create" method="GET">
-                <input type="submit" value="Create Account">
+                <input class="button" type="submit" value="Create Account">
             </form>
         </div>
     </main>

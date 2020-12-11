@@ -3,7 +3,7 @@
 <head>
     <%- include('../partials/head', {title: title}); %>
 </head>
-<body onload="getCloset(1)">
+<body onload="getCloset('<%= userId %>')">
     <header>
         <%- include('../partials/header'); %>
     </header>
@@ -16,7 +16,7 @@
             
         </div>
         <form action="/add" method="GET">
-            <input type="submit" value="Add New Item">
+            <input class="button" type="submit" value="Add New Item">
         </form>
     </main>
     <footer>

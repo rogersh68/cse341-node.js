@@ -5,11 +5,6 @@ function getDate() {
     return dateString;
 }
 
-function getTemp() {
-	/* Uses OpenWeather API to return high temp as an int */
-	return 80;
-}
-
 function getRandomInt(max) {
 	/* Returns a random int between 0 and the max argument */
 	return Math.floor(Math.random() * Math.floor(max));
@@ -17,6 +12,5 @@ function getRandomInt(max) {
 
 module.exports = {
     getDate: getDate,
-    getTemp: getTemp,
     getRandomInt: getRandomInt
 }

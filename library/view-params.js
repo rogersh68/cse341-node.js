@@ -2,12 +2,11 @@ const library = require("./functions");
 
 const viewParams = {
 	title: "", 
-	dateString: library.getDate(),
-	loggedIn: false, 
+	dateString: library.getDate(), 
 	message: "", 
-	userId: 1,
 	userName: "",
-	temp: library.getTemp(),
+	userId: 0,
+	temp: 0,
 };
 
 module.exports = {

@@ -1,53 +1,103 @@
 @import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Open+Sans+Condensed:wght@300&display=swap');
-    body {
-        background-color: #FFDAD6;
-        font-family: 'Open Sans Condensed', sans-serif;
-    }
-    h1, h2, h3 {
-        font-family: 'Nerko One', cursive;
-    }
-    header h1 {
-        text-align: center;
-        font-size: 4em;
-    }
-    #nav_div {
-        display: grid;
-        grid-template-columns: 1fr 100px;
-        grid-gap: 100px;
-    }
-    nav ul {
-        margin: 0;
-        padding: 0;
-    }
-    nav li{
-        list-style-type: none;
-        margin: 5px;
-    }
-    a {
-        display: block;
-        text-decoration: none;
-        padding: 5px 15px;
-        color: black;
-    }
-    a:hover {
-        text-decoration: underline;
-        color: #FFA299;
-    }
-    main {
-        text-align: center;
-    }
-    .success {
-        background-color: #9AC482;
-    }
-    .warning {
-        background-color: #EDD16E;
-    }
-    .back {
-        display: inline;
-    }
-    label, input {
-        display: block;
-    }
-    .inline {
-        display: inline;
-    }
+
+body {
+    background-color: #FFDAD6;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Nerko One', cursive;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 4em;
+}
+
+#nav_div {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    grid-gap: 100px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li{
+    list-style-type: none;
+    margin: 5px;
+}
+
+#nav_div a {
+    display: block;
+    text-decoration: none;
+    padding: 5px 15px;
+    color: black;
+}
+
+#nav_div a:hover {
+    text-decoration: underline;
+    color: #FFA299;
+}
+
+main h1 {
+    text-align: center;
+}
+
+main {
+    margin: 20px;
+}
+
+.success {
+    background-color: #9AC48280;
+    text-align: center;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.warning {
+    background-color: #EDD16E80;
+    text-align: center;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+select {
+    width: 150px;
+}
+
+#separator {
+    width: 130px;
+    float: left;
+    margin-top: 10px;
+}
+
+.button {
+    padding: 5px;
+    margin: 5px auto;
+    width: 130px;
+}
+
+.inline {
+    display: inline!important;
+}
+
+.output_line {
+    display: flex;
+    align-items: center;
+}
+
+.output_line p {
+    padding: 15px;
+}
+
+footer {
+    text-align: center;
+}
