@@ -400,8 +400,8 @@ function getClothingInfo(req, res) {
 	
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {	
 		console.log("ERROR --> " + error);
-		console.log("RESULT --> " + result);
-		console.log("RESULT LENGTH --> " + result.length);
+		console.log("RESULT --> " + result[0]);
+		console.log("RESULT LENGTH --> " + result[0].length);
 		if (error || result == null || result.length != 1) {
 			viewParams.title = "My Closet";
 			viewParams.message = "Could not get information for item. Please try again.";
