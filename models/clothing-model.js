@@ -68,7 +68,7 @@ function getClothingByClothingId(clothingId, callback) {
 		console.log(result.rows[0]);
 
 		// send back results
-		callback(null, result.rows[0]);
+		callback(null, result.rows);
 	})
 }
 
