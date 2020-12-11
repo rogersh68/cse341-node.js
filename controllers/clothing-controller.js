@@ -257,10 +257,16 @@ function getTemp(userId) {
 	// console.log("API KEY --> " + process.env['API_ID']);
 	// console.log("URL --> " + url);
 
-	
-	let url = getUrl(userId);
-	console.log("URL --> " + url);
-    fetch(url)
+	/* Returns the user's zip code */
+	userModel.getZipCodeByUserId(userId, function(error, result) {
+		if (error || result == undefined) {
+			console.error('There was a problem getting the zip code: ', error);
+			return 60;
+		}
+		console.log(result);
+		let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + result + ",us&units=imperial&" + "APPID=29532d73c747db9a9cb1be86effaaac6";
+		console.log(url);
+		fetch(url)
         .then((response) => response.json())
         .then((jsObject) => {
 			console.log(jsObject);
@@ -277,6 +283,7 @@ function getTemp(userId) {
             console.error('There was a problem getting the temp: ', error);
             return 60;
         });
+	});
 }
 
 function getUrl(userId) {
