@@ -41,6 +41,8 @@ function loginUser(req, res) {
 				viewParams.userId = userInfo.userid;
 				viewParams.userName = userInfo.firstname;
 				res.render('pages/home', viewParams);
+				viewParams.message = "";
+				res.end();
 			}
 			// passwords don't match, redirect
 			else {
