@@ -13,8 +13,7 @@ function generateOutfit(req, res) {
 	let userId = req.body.userId;
 
 	// get warmRating based on temp
-	var temp = getTemp(viewParams.userId);
-	viewParams.temp = temp;
+	var temp = getTemp(userId);
 	let warmRating = getWarmRating(temp);
 
 	const outfit = [];
@@ -261,6 +260,9 @@ function getTemp(userId) {
     fetch(url)
         .then((response) => response.json())
         .then((jsObject) => {
+			console.log(jsObject);
+			console.log(jsObject.main);
+			console.log(jsObject.main.temp_max)
 			if (jsObject != undefined) {
 				return Math.round(jsObject.main.temp_max);
 			}

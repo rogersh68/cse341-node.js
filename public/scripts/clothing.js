@@ -3,7 +3,7 @@
 function generateOutfit(userId) {
     console.log("Generating new outfit...");
 
-    $.post("/generate", {userId:userId}, function(result) {
+    $.post("/generate", {userId: userId}, function(result) {
         console.log("back from server with:");
         console.log(result);
 
