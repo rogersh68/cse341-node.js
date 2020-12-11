@@ -42,8 +42,8 @@ function getZipCodeByUserId(userId, callback) {
 		}
 		console.log("--> user-model.js > getZipCodeByUserId");
 		console.log(JSON.stringify(result));
-		console.log(JSON.parse(result));
-		console.log(JSON.parse(result).rows.zipcode);
+		console.log(JSON.parse(JSON.stringify(result)));
+		console.log(JSON.parse(JSON.stringify(result)).rows.zipcode);
 
 		// send back results
 		callback(null, result.rows.zipcode);
