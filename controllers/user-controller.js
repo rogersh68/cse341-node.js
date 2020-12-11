@@ -10,9 +10,13 @@ function loginUser(req, res) {
 	let userEmail = req.body.userEmail;
 	let userPassword = req.body.userPassword;
 
+	console.log("LOGIN USER");
+
 	userModel.getUserByEmail(userEmail, function(error, result) {
 		// check for errors
 		if(error || result == null || result.length != 1) {
+			console.log("LOGIN ERROR");
+
 			viewParams.title = "Login";
 			viewParams.message = "Login error. Please try again.";
 			res.render('pages/login', viewParams);
@@ -20,6 +24,7 @@ function loginUser(req, res) {
 		// compare passwords and log user in if they match
 		else {
 			let userInfo = result[0];
+			console.log("LOGGING IN");
 
 			// log user in
 			// TODO: compare hashed passwords
@@ -48,7 +53,11 @@ function loginUser(req, res) {
 }
 
 function verifyLogin(req, res, next) {
-	if (req.session.loggedIn || req.url == '/create' || req.url == '/createAccount') {
+	if (req.session.loggedIn 
+		|| req.url == '/create' 
+		|| req.url == '/createAccount'
+		|| req.url == '/login'
+		|| req.url == '/loginUser') {
 		// user is logged in, logging in, or creating account
 		// continue to next function
 		next();
