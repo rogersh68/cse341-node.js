@@ -48,12 +48,12 @@ function getZipCodeByUserId(userId, callback) {
 	});
 }
 
-function insertUser(firstName, lastName, userEmail, userPassword, callback) {
+function insertUser(firstName, lastName, zipCode, userEmail, userPassword, callback) {
 	// set up sql for query
-	let sql = "INSERT INTO public.user (firstname, lastname, useremail, userpassword) VALUES ($1, $2, $3, $4)";
+	let sql = "INSERT INTO public.user (firstname, lastname, zipcode, useremail, userpassword) VALUES ($1, $2, $3, $4, $5)";
 	
 	// set up sql parameters
-	let params = [firstName, lastName, userEmail, userPassword];
+	let params = [firstName, lastName, zipCode, userEmail, userPassword];
 
 	// run query, send results to callback function
 	connection.pool.query(sql, params, (error, result) => {

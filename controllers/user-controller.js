@@ -74,10 +74,11 @@ function createAccount(req, res) {
 	// TODO: validate user input
 	let firstName = req.body.firstName;
 	let lastName = req.body.lastName;
+	let zipCode = req.body.zipCode;
 	let userEmail = req.body.userEmail;
 	let userPassword = req.body.userPassword;
 
-	userModel.insertUser(firstName, lastName, userEmail, userPassword, function(error, result) {
+	userModel.insertUser(firstName, lastName, zipCode, userEmail, userPassword, function(error, result) {
 		// check for errors
 		if (error || !result.success) {
 			viewParams.title = "Login";
