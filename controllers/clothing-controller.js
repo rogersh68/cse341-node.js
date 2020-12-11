@@ -402,7 +402,7 @@ function getClothingInfo(req, res) {
 		if (error || result == null || result.length != 1) {
 			viewParams.title = "My Closet";
 			viewParams.message = "Could not get information for item. Please try again.";
-			res.render('pages/closet', veiwParams);
+			res.render('pages/closet', viewParams);
 		}
 		else {
 			viewParams.clothingId = result.clothingid;

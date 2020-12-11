@@ -61,6 +61,7 @@ function getClothingInfo() {
     console.log("Getting all info for clothing item...");
     
     let clothingId = document.getElementById('clothingId').value;
+    console.log("clothingId: " + clothingId);
     
     $.post("/getInfo", {clothingId:clothingId}, function(clothing) {
         console.log("back from the server with:");
