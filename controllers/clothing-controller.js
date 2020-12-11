@@ -401,15 +401,15 @@ function getClothingInfo(req, res) {
 	clothingModel.getClothingByClothingId(clothingId, function(error, result) {	
 		console.log("ERROR --> " + error);
 		console.log("RESULT --> " + result[0]);
-		console.log("RESULT LENGTH --> " + result[0].length);
+		console.log("RESULT LENGTH --> " + result.length);
 		if (error || result == null || result.length != 1) {
 			viewParams.title = "My Closet";
 			viewParams.message = "Could not get information for item. Please try again.";
 			res.render('pages/closet', viewParams);
 		}
 		else {
-			viewParams.clothingId = result.clothingid;
-			res.json(result);
+			viewParams.clothingId = result[0].clothingid;
+			res.json(result[0]);
 		}
 	});
 }
