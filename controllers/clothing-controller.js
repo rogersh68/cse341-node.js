@@ -259,9 +259,6 @@ function getTemp(userId) {
 
 	
 	let url = getUrl(userId);
-	while (url == undefined) {
-		console.log("URL --> " + url);
-	}
 	console.log("URL --> " + url);
     fetch(url)
         .then((response) => response.json())
@@ -290,7 +287,9 @@ function getUrl(userId) {
 			return 84044;
 		}
 		console.log(result);
-		return "https://api.openweathermap.org/data/2.5/weather?zip=" + result + ",us&units=imperial&" + "APPID=29532d73c747db9a9cb1be86effaaac6";
+		let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + result + ",us&units=imperial&" + "APPID=29532d73c747db9a9cb1be86effaaac6";
+		console.log(url);
+		return url;
 	});
 }
 
