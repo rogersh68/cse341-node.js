@@ -33,6 +33,9 @@ function getZipCodeByUserId(userId, callback) {
 
 	// run query, send results to callback function
 	connection.pool.query(sql, params, (error, result) => {
+		console.log("--> user-model.js > getZipCodeByUserId");
+		console.log("userid --> " + userId);
+		console.log("zipcode --> " + result.rows.zipcode);
 		if (error) {
 			console.log("--> user-model.js > getZipCodeByUserId");
 			console.log(error);
