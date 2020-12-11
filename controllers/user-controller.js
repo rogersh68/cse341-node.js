@@ -27,6 +27,8 @@ function loginUser(req, res) {
 				// set session variables
 				req.session.loggedIn = true;
 				req.session.userId = userInfo.userid;
+				console.log("--SESSION--");
+				console.log(req.session);
 
 				// set view parameters
 				viewParams.title = "Home";
