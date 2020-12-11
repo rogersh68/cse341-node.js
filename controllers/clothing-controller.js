@@ -251,7 +251,7 @@ function generateOutfit(req, res) {
 
 function getTemp(userId) {
 	/* Uses OpenWeather API to return high temp as an int */
-    let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + getZip(userId) + ",us&units=imperial&" + process.env['API_ID'];
+    let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + getZip(userId) + ",us&units=imperial&" + "APPID=29532d73c747db9a9cb1be86effaaac6";
 	console.log("API KEY --> " + process.env['API_ID']);
 
     fetch(url)
