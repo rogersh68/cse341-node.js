@@ -279,7 +279,7 @@ function getTemp(userId) {
 function getZip(userId) {
 	/* Returns the user's zip code */
 	userModel.getZipCodeByUserId(userId, function(error, result) {
-		if (error || reslut == undefined) {
+		if (error || result == undefined) {
 			console.error('There was a problem getting the zip code: ', error);
 			return 84044;
 		}
