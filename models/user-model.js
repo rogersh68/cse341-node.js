@@ -26,7 +26,7 @@ function getUserByEmail(userEmail, callback) {
 
 function getZipCodeByUserId(userId, callback) {
 	// set up sql for query
-	let sql = "SELECT * FROM public.user WHERE userid = $1";
+	let sql = "SELECT zipcode FROM public.user WHERE userid = $1";
 
 	// set up sql parameters
 	let params = [userId];
@@ -41,8 +41,7 @@ function getZipCodeByUserId(userId, callback) {
 			callback(error, null);
 		}
 		console.log("--> user-model.js > getZipCodeByUserId");
-		result = JSON.stringify(result);
-		console.log(result.rows.zipcode);
+		console.log(JSON.stringify(result));
 
 		// send back results
 		callback(null, result.rows.zipcode);
