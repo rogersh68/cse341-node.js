@@ -251,13 +251,6 @@ function generateOutfit(req, res) {
 
 function getTemp(userId) {
 	/* Uses OpenWeather API to return high temp as an int */
-	// let zip = getZip(userId);
-	// console.log("ZIP --> " + zip);
-    // let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&units=imperial&" + "APPID=29532d73c747db9a9cb1be86effaaac6";
-	// console.log("API KEY --> " + process.env['API_ID']);
-	// console.log("URL --> " + url);
-
-	/* Returns the user's zip code */
 	userModel.getZipCodeByUserId(userId, function(error, result) {
 		if (error || result == undefined) {
 			console.error('There was a problem getting the zip code: ', error);
@@ -269,9 +262,6 @@ function getTemp(userId) {
 		fetch(url)
         .then((response) => response.json())
         .then((jsObject) => {
-			console.log(jsObject);
-			console.log(jsObject.main);
-			console.log(jsObject.main.temp_max)
 			if (jsObject != undefined) {
 				return Math.round(jsObject.main.temp_max);
 			}
@@ -283,20 +273,6 @@ function getTemp(userId) {
             console.error('There was a problem getting the temp: ', error);
             return 60;
         });
-	});
-}
-
-function getUrl(userId) {
-	/* Returns the user's zip code */
-	userModel.getZipCodeByUserId(userId, function(error, result) {
-		if (error || result == undefined) {
-			console.error('There was a problem getting the zip code: ', error);
-			return 84044;
-		}
-		console.log(result);
-		let url = "https://api.openweathermap.org/data/2.5/weather?zip=" + result + ",us&units=imperial&" + "APPID=29532d73c747db9a9cb1be86effaaac6";
-		console.log(url);
-		return url;
 	});
 }
 
