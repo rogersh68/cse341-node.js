@@ -45,7 +45,7 @@ function getCloset(userId) {
                     "<form action='/delete' method='POST'>" +
                         "<input type='hidden' name='clothingId' value='" + e.clothingid + "'>" +
                         "<input type='submit' value='Delete'>" +
-                    "</form" +
+                    "</form>" +
                     "</div>");
             });
         }
