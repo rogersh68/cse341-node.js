@@ -5,6 +5,12 @@ const vp = require("../library/view-params.js");
 const userModel = require("../models/user-model.js");
 const viewParams = vp.viewParams;
 const fetch = require("node-fetch");
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+	cloud_name: 'dv3f6je01',
+	api_key: '588532794221652',
+	api_secret: 'D2vGC6R8sfBoy56Eg2AzhmKxiZ8'
+});
 
 function generateOutfit(req, res) {
 	/* Takes into account warmth of clothing for temp, colors for the season, 
@@ -376,8 +382,16 @@ function addClothingItem(req, res) {
 	let clothingColor = req.body.clothingColor;
 	let warmRating = req.body.warmRating;
 	let casualRating = req.body.casualRating;
-	let clothingImage = req.body.clothingImage;
 	let userId = req.body.userId;
+
+	// get image file
+	let clothingImage = req.file.clothingImage;
+
+	// store in cloudinary and get image url string to store in db
+	cloudinary.uploader.upload(clothingImage, {"width":200, "height":"auto"}, function(result) {
+		console.log(result);
+		//var clothingUrl = result.url;
+	});
 
 	clothingModel.insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
 		if(result.success) {

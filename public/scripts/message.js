@@ -6,3 +6,5 @@ if (message.html() == "") {
 setTimeout(function() {
     message.fadeOut();    
 }, 10000);
+
+console.log(message.html());

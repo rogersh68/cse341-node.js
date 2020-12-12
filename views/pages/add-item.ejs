@@ -9,7 +9,7 @@
     </header>
     <main>
         <h1>Add New Item</h1>
-        <form action="/add-item" method="POST">
+        <form action="/add-item" method="POST" enctype="multipart/form-data">
             <label for="clothingType">Clothing Type</label>
             <select name="clothingType" required>
                 <option disabled selected>Select</option>
@@ -42,7 +42,7 @@
             <input type="range" min="0" max="5" name="casualRating" required>
 
             <label for="clothingImage">Image</label>
-            <input type="text" name="clothingImage" required>
+            <input type="file" name="clothingImage" required>
 
             <input type="hidden" name="userId" value="<%= userId %>">
 
