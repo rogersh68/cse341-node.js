@@ -8,3 +8,4 @@ setTimeout(function() {
 }, 10000);
 
 console.log(message.html());
+console.log(message.val());

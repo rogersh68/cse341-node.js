@@ -384,6 +384,8 @@ function addClothingItem(req, res) {
 	let casualRating = req.body.casualRating;
 	let userId = req.body.userId;
 
+	console.log("REQ BODY --> " + req.body);
+
 	// get image file
 	let clothingImage = req.file.clothingImage;
 	
