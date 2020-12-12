@@ -99,7 +99,10 @@ app.post('/update-item', clothingController.updateClothingItem);
 app.post('/delete', function(req, res) {
 	viewParams.clothingId = req.body.clothingId;
 	viewParams.title = "Delete Item";
+	viewParams.message = "Once an item is deleted it cannot be retrieved.";
 	res.render('pages/delete-item', viewParams);
+	viewParams.message = "";
+	res.end();
 });
 
 // delete clothing item in db

@@ -1,9 +1,8 @@
+var message = $('#message_fade');
+if (message.html() == "") {
+    message.css("display", "none");
+}
+
 setTimeout(function() {
-    if ($('#message_fade').value != "") {
-        $('#message_fade').fadeOut();
-    }
-    else {
-        $('#message_fade').css("display", "none");
-    }
-    
+    message.fadeOut();    
 }, 10000);

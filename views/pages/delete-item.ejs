@@ -8,6 +8,9 @@
         <%- include('../partials/header'); %>
     </header>
     <main>
+        <!-- Display message -->
+        <div id="message_fade" class="warning"><%= message %></div>
+        
         <h1>Delete</h1>
         <form action="/delete-item" method="POST">
             <label for="clothingType">Clothing Type</label>
