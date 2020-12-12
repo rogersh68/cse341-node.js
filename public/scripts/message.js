@@ -1,5 +1,5 @@
 var message = $('#message_fade');
-if (message.html() == "") {
+if (message.html() == "" || message.html() == undefined) {
     message.css("display", "none");
 }
 

@@ -386,6 +386,10 @@ function addClothingItem(req, res) {
 
 	// get image file
 	let clothingImage = req.file.clothingImage;
+	
+	console.log("CLOTHING IMAGE --> " + clothingImage);
+	console.log("REQ FILE --> " + req.file);
+	console.log("REQ POST --> " + req.post);
 
 	// store in cloudinary and get image url string to store in db
 	cloudinary.uploader.upload(clothingImage, {"width":200, "height":"auto"}, function(result) {
