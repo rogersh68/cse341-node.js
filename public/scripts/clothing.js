@@ -16,7 +16,7 @@ function generateOutfit(userId) {
         // check if outfit is empty
         if (result.outfit.length > 0) {
             result.outfit.forEach(e => {
-                $("#outfit_output").append("<p><img src='" + e.clothingimage + "' width='100' alt='" + e.clothingcolor + " " + e.clothingtype + "'>" + e.clothingcolor + " " + e.clothingtype +"</p>");
+                $("#outfit_output").append("<p><img src='" + e.clothingimage + "' width='100'><br>" + e.clothingcolor + " " + e.clothingtype +"</p>");
             });
         }
         else {
@@ -37,7 +37,7 @@ function getCloset(userId) {
         if (clothes.length > 0) {
             clothes.forEach(e => {
                 $("#closet_output").append("<div class='output_line'>" + 
-                    "<p><img src='" + e.clothingimage + "' width='100' alt='" + e.clothingcolor + " " + e.clothingtype + "'>" + e.clothingcolor + " " + e.clothingtype +"</p>" +
+                    "<p><img src='" + e.clothingimage + "' width='100'><br>" + e.clothingcolor + " " + e.clothingtype +"</p>" +
                     "<form action='/update' method='POST'>" +
                         "<input type='hidden' name='clothingId' value='" + e.clothingid + "'>" +
                         "<input type='submit' value='Update'>" +

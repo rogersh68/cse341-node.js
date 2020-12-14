@@ -9,8 +9,25 @@ setTimeout(function() {
 
 console.log(message.html());
 console.log(message.val());
-console.log(message.empty());
+console.log(message.text());
 if (message.empty()) {
     console.log(true);
 }
-console.log(message.contents());
+else {
+    console.log(false);
+}
+
+if (message.contents() == "") {
+    console.log(true);
+}
+else {
+    console.log(false);
+}
+
+if (message.text() == "") {
+    console.log(true);
+}
+else {
+    console.log(false)
+}
+
