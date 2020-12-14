@@ -386,11 +386,12 @@ function addClothingItem(req, res) {
 		console.log('fields:', fields);
 		console.log('files:', files);
 	});
-	// let clothingType = req.body.clothingType;
-	// let clothingColor = req.body.clothingColor;
-	// let warmRating = req.body.warmRating;
-	// let casualRating = req.body.casualRating;
-	// let userId = req.body.userId;
+	let clothingType = req.body.clothingType;
+	let clothingColor = req.body.clothingColor;
+	let warmRating = req.body.warmRating;
+	let casualRating = req.body.casualRating;
+	let userId = req.body.userId;
+	let clothingImage = req.body.clothingImage;
 
 	// console.log("REQ BODY --> " + req.body);
 
@@ -407,22 +408,22 @@ function addClothingItem(req, res) {
 	// 	//var clothingUrl = result.url;
 	// });
 
-	// clothingModel.insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
-	// 	if(result.success) {
-	// 		viewParams.message = "Item successfully added.";
-	// 		viewParams.title = "My Closet";
-	// 		res.render('pages/closet', viewParams);
-	// 		viewParams.message = "";
-	// 		res.end();
-	// 	}
-	// 	else {
-	// 		viewParams.message = "Item was not added, please try again.";
-	// 		viewParams.title = "My Closet";
-	// 		res.render('pages/closet', viewParams);
-	// 		viewParams.message = "";
-	// 		res.end();
-	// 	}
-	// });
+	clothingModel.insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
+		if(result.success) {
+			viewParams.message = "Item successfully added.";
+			viewParams.title = "My Closet";
+			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
+		}
+		else {
+			viewParams.message = "Item was not added, please try again.";
+			viewParams.title = "My Closet";
+			res.render('pages/closet', viewParams);
+			viewParams.message = "";
+			res.end();
+		}
+	});
 }
 
 function getClothingInfo(req, res) {

@@ -9,3 +9,4 @@ setTimeout(function() {
 
 console.log(message.html());
 console.log(message.val());
+console.log(message);
