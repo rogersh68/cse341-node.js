@@ -9,4 +9,8 @@ setTimeout(function() {
 
 console.log(message.html());
 console.log(message.val());
-console.log(message);
+console.log(message.empty());
+if (message.empty()) {
+    console.log(true);
+}
+console.log(message.contents());
