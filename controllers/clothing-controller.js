@@ -11,6 +11,8 @@ cloudinary.config({
 	api_key: '588532794221652',
 	api_secret: 'D2vGC6R8sfBoy56Eg2AzhmKxiZ8'
 });
+const formidable = require('formidable');
+
 
 function generateOutfit(req, res) {
 	/* Takes into account warmth of clothing for temp, colors for the season, 
@@ -378,43 +380,49 @@ function getCloset(req, res) {
 function addClothingItem(req, res) {
 	/* Adds the clothing item specified by the user into the database. */
 	// TODO: Validate user input
-	let clothingType = req.body.clothingType;
-	let clothingColor = req.body.clothingColor;
-	let warmRating = req.body.warmRating;
-	let casualRating = req.body.casualRating;
-	let userId = req.body.userId;
+	let form = new formidable.IncomingForm();
+	form.parse(req, (err, fields, files)=> {
+		console.log('error:', err);
+		console.log('fields:', fields);
+		console.log('files:', files);
+	});
+	// let clothingType = req.body.clothingType;
+	// let clothingColor = req.body.clothingColor;
+	// let warmRating = req.body.warmRating;
+	// let casualRating = req.body.casualRating;
+	// let userId = req.body.userId;
 
-	console.log("REQ BODY --> " + req.body);
+	// console.log("REQ BODY --> " + req.body);
 
-	// get image file
-	let clothingImage = req.file.clothingImage;
+	// // get image file
+	// let clothingImage = req.file.clothingImage;
 	
-	console.log("CLOTHING IMAGE --> " + clothingImage);
-	console.log("REQ FILE --> " + req.file);
-	console.log("REQ POST --> " + req.post);
+	// console.log("CLOTHING IMAGE --> " + clothingImage);
+	// console.log("REQ FILE --> " + req.file);
+	// console.log("REQ POST --> " + req.post);
 
-	// store in cloudinary and get image url string to store in db
-	cloudinary.uploader.upload(clothingImage, {"width":200, "height":"auto"}, function(result) {
-		console.log(result);
-		//var clothingUrl = result.url;
-	});
+	// // store in cloudinary and get image url string to store in db
+	// cloudinary.uploader.upload(clothingImage, {"width":200, "height":"auto"}, function(result) {
+	// 	console.log(result);
+	// 	//var clothingUrl = result.url;
+	// });
 
-	clothingModel.insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
-		if(result.success) {
-			viewParams.message = "Item successfully added.";
-			viewParams.title = "My Closet";
-			res.render('pages/closet', viewParams);
-			viewParams.message = "";
-			res.end();
-		}
-		else {
-			viewParams.message = "Item was not added, please try again.";
-			viewParams.title = "My Closet";
-			res.render('pages/closet', viewParams);
-			viewParams.message = "";
-			res.end();
-		}
-	});
+	// clothingModel.insertClothingItem(clothingType, clothingColor, warmRating, casualRating, clothingImage, userId, function(error, result) {
+	// 	if(result.success) {
+	// 		viewParams.message = "Item successfully added.";
+	// 		viewParams.title = "My Closet";
+	// 		res.render('pages/closet', viewParams);
+	// 		viewParams.message = "";
+	// 		res.end();
+	// 	}
+	// 	else {
+	// 		viewParams.message = "Item was not added, please try again.";
+	// 		viewParams.title = "My Closet";
+	// 		res.render('pages/closet', viewParams);
+	// 		viewParams.message = "";
+	// 		res.end();
+	// 	}
+	// });
 }
 
 function getClothingInfo(req, res) {
